@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router";
 import Layout from './Layout.jsx'
 import LayoutNoNav from "./layoutNoNav.jsx";
 import Home from './home.jsx'
+import SignBook from "./SignBook.jsx";
 
 const router = createBrowserRouter([
     {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home/>,
+            },
+            {
+                path: '/signBook',
+                element: <SignBook/>,
             },
         ]
     },

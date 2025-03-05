@@ -13,7 +13,7 @@ function Layout(){
                             <button>Lessen</button>
                         </div>
                         <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
-                            <button>Gebarenboek</button>
+                            <Link to="/signBook">Gebarenboek</Link>
                         </div>
                         <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
                             <button>Games</button>
