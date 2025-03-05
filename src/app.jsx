@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {createBrowserRouter, RouterProvider} from "react-router";
 import Layout from './Layout.jsx'
+import LayoutNoNav from "./layoutNoNav.jsx";
 import Home from './home.jsx'
 
 const router = createBrowserRouter([
@@ -8,8 +9,16 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                path: '/',
+                path: '/home',
                 element: <Home/>,
+            },
+        ]
+    },
+    {
+        element: <LayoutNoNav />,
+        children: [
+            {
+
             },
         ]
     }

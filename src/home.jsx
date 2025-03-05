@@ -5,8 +5,6 @@ function Home() {
                 <p>Home page</p>
             </div>
         </section>
-
     )
 }
-
 export default Home;
