@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router";
 import Layout from './Layout.jsx'
 import LayoutNoNav from "./layoutNoNav.jsx";
 import Home from './home.jsx'
+import Lesson from './Lesson.jsx'
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
         element: <LayoutNoNav />,
         children: [
             {
-
+                path: '/lesson/',
+                element: <Lesson />,
             },
         ]
     }

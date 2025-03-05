@@ -2,7 +2,7 @@ import {Link, Outlet} from "react-router";
 
 function Layout(){
     return(
-        <div className="bg-background text-xl flex flex-col h-screen justify-between">
+        <div className="bg-background text-xl flex flex-col h-screen">
             <header>
                 <nav className="flex items-center justify-between px-20 py-5 mb-5 bg-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.10)]">
                     <div>
