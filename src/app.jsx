@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         element: <LayoutNoNav />,
         children: [
             {
-                path: '/lesson/',
+                path: '/lessons/:id',
                 element: <Lesson />,
             },
         ]
