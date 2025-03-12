@@ -5,6 +5,7 @@ import LayoutNoNav from "./layoutNoNav.jsx";
 import Home from './home.jsx'
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
+import Lesson from './Lesson.jsx'
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,8 @@ const router = createBrowserRouter([
         element: <LayoutNoNav />,
         children: [
             {
-
+                path: '/lessons/:id',
+                element: <Lesson />,
             },
         ]
     }
