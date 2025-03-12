@@ -10,15 +10,14 @@ export default {
         'background' : '#EFF7FF',
         'button' : '#CCE6FE',
         'headerBlue' : '#6494ED',
-          'correct' : '#73FFE8',
-          'incorrect' : '#FF1A7D',
-          'offwhite' : '#F8F7F7'
+        'correct' : '#73FFE8',
+        'incorrect' : '#FF1A7D',
+        'offwhite' : '#F8F7F7'
       },
       fontFamily: {
         kulim: ["Kulim Park", "sans-serif"]
       },
-      }
-    },
+    }
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
