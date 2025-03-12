@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
+
 
 function Lesson() {
+    const navigate = useNavigate();
+    const params = useParams();
+    const [signs, setSigns] = useState([]);
+    const [sign, setSign] = useState([]);
+    const [isCorrect, setIsCorrect] = useState(false);
+    const [isIncorrect, setIsIncorrect] = useState(false);
+    const [isStartPopup, setIsStartPopup] = useState(true);
+    const [isEndPopup, setIsEndPopup] = useState(false);
+    const [isProgressBar, setIsProgressBar] = useState(false);
+
+
+    const [signNumber, setSignNumber] = useState([]);
+    const [originalSignNumber, setOriginalSignNumber] = useState([]);
 
     function handleBackButton() {
-        setIsCorrect(false);
-        setIsIncorrect(false);
+        navigate('/');
     }
 
     function handleHintButton(event) {
@@ -21,17 +34,12 @@ function Lesson() {
     });
 
     const handleInputChange = (event) => {
-
         const {name, value} = event.target;
         setFormData({
             ...formData,
             [name]: value,
         });
     };
-
-    const params=useParams();
-
-    const [sign, setSign] = useState([]);
 
     //loads data
     useEffect(() => {
@@ -45,29 +53,30 @@ function Lesson() {
             }
         });
         const data = await response.json();
-        setSign(data);
+        setSigns(data);
+        setOriginalSignNumber(data.items.length);
     }
-
 
     //Handles button
     async function handleSubmitButton(event) {
         event.preventDefault();
-        console.log(sign)
-        if(formData.answer.toLowerCase() === sign.translation.toLowerCase()) {
-            // console.log("correct")
-            // console.log(sign.translation);
-            // console.log(formData.answer);
+        if (formData.answer.toLowerCase() === sign.translation.toLowerCase()) {
             correctAnswer()
         } else {
-            // console.log("incorrect")
-            // console.log(sign.translation);
-            // console.log(formData.answer);
             incorrectAnswer()
         }
     }
 
-    const [isCorrect, setIsCorrect] = useState(false);
-    const [isIncorrect, setIsIncorrect] = useState(false);
+    function questionList() {
+        if (signs.items.length > 0) {
+            console.log(signs.items[0]);
+            setSign(signs.items[0]);
+            setSignNumber(signs.items.length)
+            signs.items.shift()
+        } else {
+            setIsEndPopup(true);
+        }
+    }
 
     function correctAnswer() {
         setIsCorrect(true);
@@ -77,10 +86,50 @@ function Lesson() {
         setIsIncorrect(true);
     }
 
+    function handleNextButton() {
+        setIsCorrect(false);
+        setIsIncorrect(false);
+        setIsHint(false);
+        questionList()
+    }
+
+
+    function handlePopupButton() {
+        setIsStartPopup(false);
+        setIsProgressBar(true);
+        questionList()
+    }
+
     return (
+
         <main>
-            <section className="flex items-center p-10">
-                <div>
+                {isStartPopup && (
+                    <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
+                        <div>
+                            <h1 className="text-4xl pb-40">Leer de gebaren van les {params.id}</h1>
+                        </div>
+                        <div>
+                            <button onClick={handlePopupButton}
+                                    className="drop-shadow-md bg-button h-32 py-10 px-32 rounded-full">Start les
+                            </button>
+                        </div>
+                    </section>
+                )}
+            {isEndPopup && (
+                <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
+                    <div>
+                        <h1 className="text-4xl pb-40">Je hebt les {params.id} gehaald!</h1>
+                    </div>
+                    <div>
+                        <button onClick={handleBackButton}
+                                className="drop-shadow-md bg-correct h-32 py-10 px-32 rounded-full">Terug naar lesoverzicht
+                        </button>
+                    </div>
+                </section>
+            )}
+            {isProgressBar && (
+                <section className="flex items-center p-10">
+                    <div>
                     <button onClick={handleBackButton} className="w-10 h-10 mx-0 lg:mx-10">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                              stroke="currentColor" className="size-10">
@@ -88,17 +137,26 @@ function Lesson() {
                         </svg>
                     </button>
                 </div>
-                <div className="flex w-[80%] ml-4 lg:ml-20 flex-col gap-4">
-                    <progress className="drop-shadow-md bg-offwhite rounded-full h-14" value={0.2}/>
-                </div>
+                    <div className="flex w-[80%] ml-4 lg:ml-20 flex-col gap-4">
+                        <progress className="drop-shadow-md bg-offwhite rounded-full h-14"
+                                  value={(originalSignNumber - signNumber) / originalSignNumber} onChange={handleInputChange}/>
+                    </div>
             </section>
+                )}
             <section>
                 <div className="flex justify-center p-10 gap-10">
                     {isHint && (
-                        <div className="flex w-[30%] justify-between max-h-[40vh] py-48 px-32 bg-button rounded-[50px] text-4xl">
+                        <div
+                            className="flex w-[30%] max-h-[40vh] py-16 px-16 bg-button rounded-[50px] text-4xl">
                             <div className="flex flex-col">
                                 <div>
-                                    <p>Omschrijving:</p>
+                                    <p><b>Vertaling:</b></p>
+                                </div>
+                                <div>
+                                    <p>{sign.translation}</p>
+                                </div>
+                                <div>
+                                    <p><b>Omschrijving:</b></p>
                                 </div>
                                 <div>
                                     <p>{sign.explanation}</p>
@@ -111,13 +169,17 @@ function Lesson() {
                     </div>
                 </div>
             </section>
+            {isProgressBar && (
             <section>
-                <form className="flex items-center justify-center p-10 lg:gap-44 gap-10 mt-0 lg:mt-14 sticky flex-col lg:flex-row">
+                <form
+                    className="flex items-center justify-center p-10 lg:gap-44 gap-10 mt-0 lg:mt-14 sticky flex-col lg:flex-row">
                     <div>
-                        <input className="drop-shadow-md bg-button py-24 lg:py-10 px-5 lg:px-80 rounded-[50px] lg:rounded-full" value={formData.answer}
-                               type="text" id="answer"
-                               name="answer" required onChange={handleInputChange}
-                               placeholder="voer hier uw antwoord in"></input>
+                        <input
+                            className="drop-shadow-md bg-button py-24 lg:py-10 px-5 lg:px-80 rounded-[50px] lg:rounded-full"
+                            value={formData.answer}
+                            type="text" id="answer"
+                            name="answer" required onChange={handleInputChange}
+                            placeholder="voer hier uw antwoord in"></input>
                     </div>
                     <div>
                         <button type="submit" onClick={handleSubmitButton}
@@ -126,6 +188,7 @@ function Lesson() {
                     </div>
                 </form>
             </section>
+            )}
             {isCorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
                     <div className="flex w-[100%] justify-between py-24 px-32 bg-correct rounded-t-[100px]">
@@ -136,7 +199,9 @@ function Lesson() {
                             <p>Dit gebaar betekent inderdaad {sign.translation}</p>
                         </div>
                         <div>
-                            <button className="drop-shadow-md bg-button py-10 px-32 rounded-full">Volgende vraag</button>
+                            <button onClick={handleNextButton}
+                                className="drop-shadow-md bg-button py-10 px-32 rounded-full">Volgende vraag
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -149,10 +214,14 @@ function Lesson() {
                         </div>
                         <div className="flex items-center gap-10">
                             <div className="flex items-center">
-                                <button onClick={handleHintButton} className="drop-shadow-md bg-correct py-10 px-32 rounded-full">Laat antwoord zien</button>
+                                <button onClick={handleHintButton}
+                                        className="drop-shadow-md bg-correct py-10 px-32 rounded-full">Laat antwoord zien
+                                </button>
                             </div>
                             <div>
-                                <button className="drop-shadow-md bg-button py-10 px-32 rounded-full">Volgende vraag </button>
+                                <button onClick={handleNextButton}
+                                    className="drop-shadow-md bg-button py-10 px-32 rounded-full">Volgende vraag
+                                </button>
                             </div>
                         </div>
                     </div>
