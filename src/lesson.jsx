@@ -101,7 +101,6 @@ function Lesson() {
     }
 
     return (
-
         <main>
                 {isStartPopup && (
                     <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
@@ -144,10 +143,10 @@ function Lesson() {
             </section>
                 )}
             <section>
-                <div className="flex justify-center p-10 gap-10">
+                <div className="flex flex-col lg:flex-row justify-center p-10 gap-10">
                     {isHint && (
                         <div
-                            className="flex w-[30%] max-h-[40vh] py-16 px-16 bg-button rounded-[50px] text-4xl">
+                            className="flex max-h-[40vh] py-16 px-16 bg-button rounded-[50px] text-4xl">
                             <div className="flex flex-col">
                                 <div>
                                     <p><b>Vertaling:</b></p>
@@ -191,16 +190,16 @@ function Lesson() {
             )}
             {isCorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex w-[100%] justify-between py-24 px-32 bg-correct rounded-t-[100px]">
+                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-24 px-32 bg-correct rounded-t-[100px]">
                         <div className="flex items-center">
-                            <p className="text-8xl">Correct!</p>
+                            <p className="text-4xl lg:text-8xl">Correct!</p>
                         </div>
                         <div className="flex items-center">
                             <p>Dit gebaar betekent inderdaad {sign.translation}</p>
                         </div>
-                        <div>
+                        <div className="flex items-center">
                             <button onClick={handleNextButton}
-                                className="drop-shadow-md bg-button py-10 px-32 rounded-full">Volgende vraag
+                                className="flex items-center drop-shadow-md bg-button py-10 px-16 lg:px-32 rounded-full">Volgende vraag
                             </button>
                         </div>
                     </div>
@@ -208,11 +207,11 @@ function Lesson() {
             )}
             {isIncorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex w-[100%] justify-between py-24 px-32 bg-incorrect rounded-t-[100px]">
+                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-24 px-32 bg-incorrect rounded-t-[100px]">
                         <div className="flex items-center text-white">
-                            <p className="text-8xl">Incorrect</p>
+                            <p className="text-4xl lg:text-8xl">Incorrect</p>
                         </div>
-                        <div className="flex items-center gap-10">
+                        <div className="flex flex-col lg:flex-row items-center gap-10">
                             <div className="flex items-center">
                                 <button onClick={handleHintButton}
                                         className="drop-shadow-md bg-correct py-10 px-32 rounded-full">Laat antwoord zien
