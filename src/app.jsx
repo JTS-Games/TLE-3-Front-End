@@ -4,6 +4,7 @@ import Layout from './Layout.jsx'
 import LayoutNoNav from "./layoutNoNav.jsx";
 import Home from './home.jsx'
 import SignBook from "./SignBook.jsx";
+import SignDetail from "./SignDetail.jsx";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
             {
                 path: '/signBook',
                 element: <SignBook/>,
+            },
+            {
+                path: '/signs/:id',
+                element: <SignDetail/>,
             },
         ]
     },

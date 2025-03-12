@@ -9,15 +9,24 @@ function Layout(){
                         <p>(app naam)</p>
                     </div>
                     <div className="flex items-center justify-end gap-6">
-                        <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
-                            <button>Lessen</button>
-                        </div>
-                        <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
-                            <Link to="/signBook">Gebarenboek</Link>
-                        </div>
-                        <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
-                            <button>Games</button>
-                        </div>
+                        <Link to="/">
+                            <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
+                                Lessen
+                            </div>
+                        </Link>
+
+                        <Link to="/signBook">
+                            <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
+                                Gebarenboek
+                            </div>
+                        </Link>
+
+                        <Link to="/">
+                            <div className="bg-button drop-shadow-md py-3 px-6 rounded-full">
+                                Games
+                            </div>
+                        </Link>
+
                     </div>
                     <div className="flex gap-6">
                         <div>
@@ -32,7 +41,7 @@ function Layout(){
             <main>
                 <Outlet/>
             </main>
-            <footer className="flex items-center justify-between px-20 py-5 mt-5 bg-white drop-shadow-[0_-10px_10px_rgba(0,0,0,0.10)]">
+            <footer className="flex items-center justify-between px-20 py-5 bg-white drop-shadow-[0_-10px_10px_rgba(0,0,0,0.10)]">
                 <div>
                     <p>(app naam) ©2025</p>
                 </div>

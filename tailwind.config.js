@@ -8,10 +8,16 @@ export default {
     extend: {
       colors: {
         'background' : '#EFF7FF',
-        'button' : '#CCE6FE'
-      }
+        'button' : '#CCE6FE',
+        'headerBlue' : '#6494ED',
+      },
+      fontFamily: {
+        kulim: ["Kulim Park", "sans-serif"]
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
 
