@@ -9,6 +9,12 @@ export default {
       colors: {
         'background' : '#EFF7FF',
         'button' : '#CCE6FE'
+      },
+      fontFamily: {
+        kulim: ["Kulim Park", "sans-serif"]
+      },
+      backgroundImage: {
+        'blue-white-gradient': "url('src/assets/background/mesh-gradient-blue-white.png')"
       }
     },
   },

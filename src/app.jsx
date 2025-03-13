@@ -1,32 +1,43 @@
-import { useState } from 'react'
-import {createBrowserRouter, RouterProvider} from "react-router";
-import Layout from './Layout.jsx'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
-import Home from './home.jsx'
-import Lesson from './Lesson.jsx'
+import Home from "./home.jsx";
+import Lesson from "./Lesson.jsx";
+import Login from "./login.jsx";
+import ProtectedRoute from "./component/PrivateRoute.jsx";
+import SSOCallback from "./SSOCallback.jsx";
 
 const router = createBrowserRouter([
     {
         element: <Layout />,
         children: [
             {
-                path: '/',
-                element: <Home/>,
+                path: "/",
+                element: <Home />,
             },
-        ]
+        ],
     },
     {
         element: <LayoutNoNav />,
         children: [
             {
-                path: '/lesson/',
+                path: "/lesson/",
                 element: <Lesson />,
             },
-        ]
-    }
-])
+            {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/SSOCallback",
+                element: <SSOCallback/>
+            }
+        ],
+    },
+]);
+
 function App() {
-    return <RouterProvider router={router} />
+    return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
