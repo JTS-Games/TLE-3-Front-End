@@ -17,7 +17,19 @@ export default {
         'blue-white-gradient': "url('src/assets/background/mesh-gradient-blue-white.png')"
       }
     },
+        'button' : '#CCE6FE',
+        'headerBlue' : '#6494ED',
+        'correct' : '#73FFE8',
+        'incorrect' : '#FF1A7D',
+        'offwhite' : '#F8F7F7'
+      },
+      fontFamily: {
+        kulim: ["Kulim Park", "sans-serif"]
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
 

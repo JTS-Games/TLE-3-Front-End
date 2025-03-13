@@ -1,6 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
+import Home from './home.jsx'
+import SignBook from "./SignBook.jsx";
+import SignDetail from "./SignDetail.jsx";
+import Lesson from './Lesson.jsx'
 import Home from "./home.jsx";
 import Lesson from "./Lesson.jsx";
 import Login from "./login.jsx";
@@ -12,16 +16,24 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                path: "/",
-                element: <Home />,
+                path: '/',
+                element: <Home/>,
             },
-        ],
+            {
+                path: '/signBook',
+                element: <SignBook/>,
+            },
+            {
+                path: '/signs/:id',
+                element: <SignDetail/>,
+            },
+        ]
     },
     {
         element: <LayoutNoNav />,
         children: [
             {
-                path: "/lesson/",
+                path: '/lessons/:id',
                 element: <Lesson />,
             },
             {
@@ -37,7 +49,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />
 }
 
-export default App;
+export default App
