@@ -13,7 +13,6 @@ function Lesson() {
     const [isEndPopup, setIsEndPopup] = useState(false);
     const [isProgressBar, setIsProgressBar] = useState(false);
 
-
     const [signNumber, setSignNumber] = useState([]);
     const [originalSignNumber, setOriginalSignNumber] = useState([]);
 
@@ -90,6 +89,7 @@ function Lesson() {
         setIsCorrect(false);
         setIsIncorrect(false);
         setIsHint(false);
+        formData.answer=""
         questionList()
     }
 
