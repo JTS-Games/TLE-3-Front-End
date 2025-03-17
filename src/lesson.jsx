@@ -48,7 +48,8 @@ function Lesson() {
     const loadData = async () => {
         const response = await fetch(`http://145.24.223.113:8000/signs/filtered?lesson=${params.id}`, {
             headers: {
-                'Accept': 'application/json'
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q4MTY0MzQ3YzgxZGMzZmU4ZWI0YTUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjIxNjM5NCwiZXhwIjoxNzQyMjE5OTk0fQ.eWY9gI7I1ulyu0cXbWQQYh0DAvwTIO9Y2d6-7QBPrIk',
+                'Accept': 'application/json',
             }
         });
         const data = await response.json();
