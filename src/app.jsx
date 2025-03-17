@@ -5,8 +5,6 @@ import Home from './home.jsx'
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
 import Lesson from './Lesson.jsx'
-import Home from "./home.jsx";
-import Lesson from "./Lesson.jsx";
 import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./SSOCallback.jsx";
