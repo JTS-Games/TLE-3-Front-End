@@ -5,6 +5,7 @@ import LayoutNoNav from "./layoutNoNav.jsx";
 import Home from './home.jsx'
 import Lesson from './Lesson.jsx'
 import Playlists from "./playlists.jsx";
+import PlaylistView from "./playlistView.jsx";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
             {
                 path: '/Playlists',
                 element: <Playlists/>,
+            },
+            {
+                path: '/Playlistview',
+                element: <PlaylistView/>,
             },
         ]
     },
