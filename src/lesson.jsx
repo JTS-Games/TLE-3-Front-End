@@ -129,19 +129,44 @@ function Lesson() {
             {isProgressBar && (
                 <section className="flex items-center p-10">
                     <div>
-                    <button onClick={handleBackButton} className="w-10 h-10 mx-0 lg:mx-10">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                             stroke="currentColor" className="size-10">
-                            <path d="M15.75 19.5 8.25 12l7.5-7.5"/>
-                        </svg>
-                    </button>
-                </div>
-                    <div className="flex w-[80%] ml-4 lg:ml-20 flex-col gap-4">
-                        <progress className="drop-shadow-md bg-offwhite rounded-full h-12"
-                                  value={(originalSignNumber - signNumber) / originalSignNumber} onChange={handleInputChange}/>
+                        <button onClick={handleBackButton} className="w-10 h-10 mx-0 lg:mx-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
+                                 stroke="currentColor" className="size-10">
+                                <path d="M15.75 19.5 8.25 12l7.5-7.5"/>
+                            </svg>
+                        </button>
                     </div>
-            </section>
-                )}
+                    {/* Old progress bar*/}
+                    {/*<div className="flex w-[80%] ml-4 lg:ml-20 flex-col gap-4">*/}
+                    {/*    <progress className="drop-shadow-md bg-offwhite rounded-full h-12"*/}
+                    {/*              value={(originalSignNumber - signNumber) / originalSignNumber} onChange={handleInputChange}/>*/}
+                    {/*</div>*/}
+                    <div className="flex w-[80%] ml-4 lg:ml-20 flex-col gap-4">
+                        <progress
+                            className="drop-shadow-md bg-offwhite rounded-full h-12 w-full"
+                            value={(originalSignNumber - signNumber) / originalSignNumber}
+                            max="1"
+                            style={{
+                                WebkitAppearance: "none",
+                                appearance: "none",
+                            }}
+                        />
+                        <style>
+                            {`
+      progress::-webkit-progress-bar {
+        background-color: #f8f8f8;
+        border-radius: 100px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      progress::-webkit-progress-value {
+        background-color: #4CAF50;
+        border-radius: 100px;
+      }
+    `}
+                        </style>
+                    </div>
+                </section>
+            )}
             <section>
                 <div className="flex flex-col lg:flex-row justify-center p-10 gap-10">
                     {isHint && (
