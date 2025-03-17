@@ -109,7 +109,7 @@ function Lesson() {
                         </div>
                         <div>
                             <button onClick={handlePopupButton}
-                                    className="drop-shadow-md bg-button h-32 py-10 px-32 rounded-full">Start les
+                                    className="drop-shadow-md bg-button h-22 py-8 px-32 rounded-full">Start les
                             </button>
                         </div>
                     </section>
@@ -121,7 +121,7 @@ function Lesson() {
                     </div>
                     <div>
                         <button onClick={handleBackButton}
-                                className="drop-shadow-md bg-correct h-32 py-10 px-32 rounded-full">Terug naar lesoverzicht
+                                className="drop-shadow-md bg-correct h-22 py-8 px-32 rounded-full">Terug naar lesoverzicht
                         </button>
                     </div>
                 </section>
@@ -137,7 +137,7 @@ function Lesson() {
                     </button>
                 </div>
                     <div className="flex w-[80%] ml-4 lg:ml-20 flex-col gap-4">
-                        <progress className="drop-shadow-md bg-offwhite rounded-full h-14"
+                        <progress className="drop-shadow-md bg-offwhite rounded-full h-12"
                                   value={(originalSignNumber - signNumber) / originalSignNumber} onChange={handleInputChange}/>
                     </div>
             </section>
@@ -171,10 +171,10 @@ function Lesson() {
             {isProgressBar && (
             <section>
                 <form
-                    className="flex items-center justify-center p-10 lg:gap-44 gap-10 mt-0 lg:mt-14 sticky flex-col lg:flex-row">
+                    className="flex items-center justify-center p-10 lg:gap-44 gap-10 mt-0 lg:mt-10 sticky flex-col lg:flex-row">
                     <div>
                         <input
-                            className="drop-shadow-md bg-button py-24 lg:py-10 px-5 lg:px-80 rounded-[50px] lg:rounded-full"
+                            className="drop-shadow-md bg-button py-24 lg:py-8 px-5 lg:px-80 rounded-[50px] lg:rounded-full"
                             value={formData.answer}
                             type="text" id="answer"
                             name="answer" required onChange={handleInputChange}
@@ -182,7 +182,7 @@ function Lesson() {
                     </div>
                     <div>
                         <button type="submit" onClick={handleSubmitButton}
-                                className="drop-shadow-md bg-correct py-10 px-28 lg:px-32 rounded-full">Check
+                                className="drop-shadow-md bg-correct py-8 px-28 lg:px-32 rounded-full">Check
                         </button>
                     </div>
                 </form>
@@ -190,7 +190,7 @@ function Lesson() {
             )}
             {isCorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-24 px-32 bg-correct rounded-t-[100px]">
+                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-24 px-32 bg-correct rounded-t-[50px]">
                         <div className="flex items-center">
                             <p className="text-4xl lg:text-8xl">Correct!</p>
                         </div>
@@ -199,7 +199,7 @@ function Lesson() {
                         </div>
                         <div className="flex items-center">
                             <button onClick={handleNextButton}
-                                className="flex items-center drop-shadow-md bg-button py-10 px-16 lg:px-32 rounded-full">Volgende vraag
+                                className="flex items-center drop-shadow-md bg-button py-8 px-16 lg:px-32 rounded-full">Volgende vraag
                             </button>
                         </div>
                     </div>
@@ -207,19 +207,19 @@ function Lesson() {
             )}
             {isIncorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-24 px-32 bg-incorrect rounded-t-[100px]">
+                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-24 px-32 bg-incorrect rounded-t-[50px]">
                         <div className="flex items-center text-white">
                             <p className="text-4xl lg:text-8xl">Incorrect</p>
                         </div>
                         <div className="flex flex-col lg:flex-row items-center gap-10">
                             <div className="flex items-center">
                                 <button onClick={handleHintButton}
-                                        className="drop-shadow-md bg-correct py-10 px-32 rounded-full">Laat antwoord zien
+                                        className="drop-shadow-md bg-correct py-8 px-32 rounded-full">Laat antwoord zien
                                 </button>
                             </div>
                             <div>
                                 <button onClick={handleNextButton}
-                                    className="drop-shadow-md bg-button py-10 px-32 rounded-full">Volgende vraag
+                                    className="drop-shadow-md bg-button py-8 px-32 rounded-full">Volgende vraag
                                 </button>
                             </div>
                         </div>
