@@ -164,17 +164,17 @@ function Lesson() {
                         </div>
                     )}
                     <div>
-                        <img alt="gebaar" className="max-h-[40vh] rounded-[50px]" src={sign.gif}></img>
+                        <img alt="gebaar" className="h-[36vh] rounded-[50px]" src={sign.gif}></img>
                     </div>
                 </div>
             </section>
             {isProgressBar && (
             <section>
                 <form
-                    className="flex items-center justify-center p-10 lg:gap-44 gap-10 mt-0 lg:mt-10 sticky flex-col lg:flex-row">
+                    className="flex items-center justify-center p-10 lg:gap-[5%] gap-10 mt-0 lg:mt-10 sticky flex-col lg:flex-row">
                     <div>
                         <input
-                            className="drop-shadow-md bg-button py-24 lg:py-8 px-5 lg:px-80 rounded-[50px] lg:rounded-full"
+                            className="drop-shadow-md bg-button py-24 lg:py-8 px-[15vw] rounded-[50px] lg:rounded-full"
                             value={formData.answer}
                             type="text" id="answer"
                             name="answer" required onChange={handleInputChange}
