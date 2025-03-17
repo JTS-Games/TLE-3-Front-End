@@ -190,11 +190,11 @@ function Lesson() {
             )}
             {isCorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-24 px-32 bg-correct rounded-t-[50px]">
+                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-20 px-32 bg-correct rounded-t-[50px]">
                         <div className="flex items-center">
                             <p className="text-4xl lg:text-8xl">Correct!</p>
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex items-center w-[50%]">
                             <p>Dit gebaar betekent inderdaad {sign.translation}</p>
                         </div>
                         <div className="flex items-center">
@@ -207,7 +207,7 @@ function Lesson() {
             )}
             {isIncorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-24 px-32 bg-incorrect rounded-t-[50px]">
+                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-20 px-32 bg-incorrect rounded-t-[50px]">
                         <div className="flex items-center text-white">
                             <p className="text-4xl lg:text-8xl">Incorrect</p>
                         </div>
