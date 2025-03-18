@@ -47,7 +47,7 @@ function Test() {
     }, []);
 
     const loadData = async () => {
-        const response = await fetch(`http://145.24.223.113:8000/signs/filtered?lesson=${params.id}`, {
+        const response = await fetch(`http://145.24.223.113:8000/signs/filtered?lesson=${params.id}&method=SHUFFLE`, {
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q5NjYxMDQzMTljODMzNTk0ZmFkN2MiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjMwMDY4OCwiZXhwIjoxNzQyMzE4Njg4fQ.EPjNmd5kIJThkJVJOP71XOaaKreNRTcPF93rLy_oUkI`
