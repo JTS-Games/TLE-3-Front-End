@@ -48,12 +48,19 @@ function PlaylistView() {
             <h1 className="text-3xl font-bold mb-4">{playlist.naam}</h1> {/* Naam van de playlist */}
 
             {/* Itereer over elk gebaar in de playlist en maak een vakje voor elk */}
-            <div className="grid  grid-cols-4 gap-8">
+            <div className="grid  grid-cols-4 gap-[2vw]">
                 {playlist.gebaren.map((gebaar, index) => (
-                    <div key={index} className="flex flex-col items-center justify-between h-[12vw] bg-white rounded-lg shadow-md p-4 mb-4">
+                    <div key={index} className="flex flex-col gap-[0.7vw] items-center align-middle justify-between bg-white rounded-lg shadow-md pt-[1vw] pl-[1.5vw] pr-[1.5vw] pb-[1vw] ">
                         <h2 className="text-lg font-semibold">{gebaar.translation}</h2>
-                        <p className="text-gray-600">{gebaar.explanation}</p>
-                        <h2 className="text-lg font-semibold">Bekijk in woordenboek</h2>
+                        <p className="text-gray-600 text-sm mb-2 text-center">{gebaar.explanation}</p>
+                        <div className="flex gap-4 justify-evenly">
+                            <button className='flex justify-center items-center  rounded-full bg-correct'>
+                                <p className=" text-sm p-[0.5vw] text-nowrap">Bekijk in woordenboek</p>
+                            </button>
+                            <button className='flex justify-center items-center  rounded-full bg-incorrect'>
+                                <p className=" text-sm p-[0.5vw] text-nowrap">Gebaar verwijderen</p>
+                            </button>
+                        </div>
 
                     </div>
                 ))}
