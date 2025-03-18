@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from "react-router";
 
 
-function Lesson() {
+function Test() {
     const navigate = useNavigate();
     const params = useParams();
     const [signs, setSigns] = useState([]);
@@ -15,6 +15,7 @@ function Lesson() {
 
     const [signNumber, setSignNumber] = useState([]);
     const [originalSignNumber, setOriginalSignNumber] = useState([]);
+    const [correctAnswerCount, setCorrectAnswerCount] = useState(false);
 
     function handleBackButton() {
         navigate('/');
@@ -79,6 +80,7 @@ function Lesson() {
     }
 
     function correctAnswer() {
+        setCorrectAnswerCount(correctAnswerCount + 1);
         setIsCorrect(true);
     }
 
@@ -105,11 +107,11 @@ function Lesson() {
                 {isStartPopup && (
                     <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
                         <div>
-                            <h1 className="text-4xl pb-40">Leer de gebaren van les {params.id}</h1>
+                            <h1 className="text-4xl pb-40">Test jouw kennis over de gebaren van les {params.id}</h1>
                         </div>
                         <div>
                             <button onClick={handlePopupButton}
-                                    className="drop-shadow-md bg-button h-22 py-8 px-32 rounded-full">Start les
+                                    className="drop-shadow-md bg-button h-22 py-8 px-32 rounded-full">Start test
                             </button>
                         </div>
                     </section>
@@ -117,11 +119,12 @@ function Lesson() {
             {isEndPopup && (
                 <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
                     <div>
-                        <h1 className="text-4xl pb-40">Je hebt les {params.id} gehaald!</h1>
+                        <h1 className="text-4xl pb-40">Je hebt de test {params.id} met {correctAnswerCount} van de {originalSignNumber} punten gehaald, dat is een {correctAnswerCount/originalSignNumber * 9 + 1}</h1>
                     </div>
                     <div>
                         <button onClick={handleBackButton}
-                                className="drop-shadow-md bg-correct h-22 py-8 px-32 rounded-full">Terug naar lesoverzicht
+                                className="drop-shadow-md bg-correct h-22 py-8 px-32 rounded-full">Terug naar
+                            lesoverzicht
                         </button>
                     </div>
                 </section>
@@ -130,7 +133,7 @@ function Lesson() {
                 <section className="flex items-center p-10">
                     <div>
                         <button onClick={handleBackButton} className="w-10 h-10 mx-0 lg:mx-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                                  stroke="currentColor" className="size-10">
                                 <path d="M15.75 19.5 8.25 12l7.5-7.5"/>
                             </svg>
@@ -172,25 +175,6 @@ function Lesson() {
             )}
             <section>
                 <div className="flex flex-col lg:flex-row justify-center p-10 gap-10">
-                    {isHint && (
-                        <div
-                            className="flex max-h-[40vh] py-16 px-16 bg-button rounded-[50px] text-4xl">
-                            <div className="flex flex-col">
-                                <div>
-                                    <p><b>Vertaling:</b></p>
-                                </div>
-                                <div>
-                                    <p>{sign.translation}</p>
-                                </div>
-                                <div>
-                                    <p><b>Omschrijving:</b></p>
-                                </div>
-                                <div>
-                                    <p>{sign.explanation}</p>
-                                </div>
-                            </div>
-                        </div>
-                    )}
                     <div>
                         <img alt="gebaar" className="h-[36vh] rounded-[50px]" src={sign.gif}></img>
                     </div>
@@ -240,11 +224,6 @@ function Lesson() {
                             <p className="text-4xl lg:text-8xl">Incorrect</p>
                         </div>
                         <div className="flex flex-col lg:flex-row items-center gap-10">
-                            <div className="flex items-center">
-                                <button onClick={handleHintButton}
-                                        className="drop-shadow-md bg-correct py-8 px-32 rounded-full">Laat antwoord zien
-                                </button>
-                            </div>
                             <div>
                                 <button onClick={handleNextButton}
                                     className="drop-shadow-md bg-button py-8 px-32 rounded-full">Volgende vraag
@@ -258,4 +237,4 @@ function Lesson() {
     );
 }
 
-export default Lesson;
+export default Test;
