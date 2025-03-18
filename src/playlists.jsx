@@ -54,7 +54,7 @@ function Playlists() {
     return (
         <>
             <div className='flex ml-[5vw] text-3xl font-bold mb-[2vw]'>
-                <h1>Mijn playlists</h1>
+                <h1>Mijn playlists ({data.length})</h1>
             </div>
 
             {data.length === 0 ? (
