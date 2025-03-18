@@ -1,10 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from './Layout.jsx';
+import { useState } from 'react'
+import {createBrowserRouter, RouterProvider} from "react-router";
+import Layout from './Layout.jsx'
 import LayoutNoNav from "./layoutNoNav.jsx";
-import Home from './home.jsx';
-import Lesson from './Lesson.jsx';
-import Playlists from "./playlists.jsx";
-import PlaylistView from "./playlistView.jsx";
+import Home from './home.jsx'
+import Lesson from './Lesson.jsx'
 
 const router = createBrowserRouter([
     {
@@ -12,7 +11,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />,
+                element: <Home/>,
             },
             {
                 path: '/playlists',
@@ -23,13 +22,38 @@ const router = createBrowserRouter([
                 element: <PlaylistView />,
             },
         ],
+            {
+                path: '/signBook',
+                element: <SignBook/>,
+            },
+            {
+                path: '/signs/:id',
+                element: <SignDetail/>,
+            },
+            {
+                path: "*",
+                element: <ErrorPage/>,
+            }
+        ]
     },
     {
         element: <LayoutNoNav />,
         children: [
             {
-                path: '/lesson',
+                path: '/lesson/',
                 element: <Lesson />,
+            },
+            {
+                path: '/test/:id',
+                element: <Test />,
+            },
+            {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/SSOCallback",
+                element: <SSOCallback/>
             },
         ],
     },
