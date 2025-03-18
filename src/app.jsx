@@ -6,6 +6,12 @@ import Home from "./home.jsx";
 import Lesson from "./Lesson.jsx";
 import Playlists from "./playlists.jsx";
 import PlaylistView from "./playlistView.jsx";
+import SignBook from "./SignBook.jsx";
+import SignDetail from "./SignDetail.jsx";
+import ErrorPage from "./errorPage.jsx";
+import Test from "./test.jsx";
+import Login from "./login.jsx";
+import SSOCallback from "./SSOCallback.jsx";
 
 const router = createBrowserRouter([
     {
