@@ -49,14 +49,16 @@ function Playlists() {
                                 {playlist.naam}
                             </Link>
 
-                            <p className='pl-[0.5vw] flex justify-center items-center'>({playlist.gestureCount || 0} gebaren)</p>
+                            <p className='pl-[0.5vw] flex justify-center items-center text-sm'>(
+                                {playlist.gestureCount ? playlist.gestureCount : 0} gebaren)
+                            </p>
                         </div>
                         <div className='flex gap-[2vw] mr-[3vw]'>
                             <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
-                                <p>Gebaren toevoegen</p>
+                                <p className=" text-sm">Gebaren toevoegen</p>
                             </button>
                             <button className='flex justify-center items-center py-3 px-6 rounded-full bg-incorrect'>
-                                <p>Playlist verwijderen</p>
+                                <p className="text-sm">Playlist verwijderen</p>
                             </button>
                         </div>
                     </div>

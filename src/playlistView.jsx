@@ -44,21 +44,27 @@ function PlaylistView() {
     if (!playlist) return <p className="text-center text-gray-500">Geen gebaren gevonden in deze playlist.</p>;
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">{playlist.naam}</h1> {/* Naam van de playlist */}
-
+        <div className="container mx-auto pl-4">
+            <div className="flex items-center mb-[2vw]">
+                <h1 className="text-3xl font-bold ">{playlist.naam} ({playlist.gebaren.length})</h1> {/* Naam van de playlist */}
+                <button className='flex justify-center items-center w-[4vw] h-[4vw] rounded-full bg-green-400 ml-[1.5vw]'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="white" color='white' viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[2vw] pl-[0.15vw]">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                    </svg>
+                </button>
+            </div>
             {/* Itereer over elk gebaar in de playlist en maak een vakje voor elk */}
-            <div className="grid  grid-cols-4 gap-[2vw]">
+            <div className="grid  grid-cols-4 gap-[2vw] mb-[3vw]">
                 {playlist.gebaren.map((gebaar, index) => (
                     <div key={index} className="flex flex-col gap-[0.7vw] items-center align-middle justify-between bg-white rounded-lg shadow-md pt-[1vw] pl-[1.5vw] pr-[1.5vw] pb-[1vw] ">
                         <h2 className="text-lg font-semibold">{gebaar.translation}</h2>
-                        <p className="text-gray-600 text-sm mb-2 text-center">{gebaar.explanation}</p>
+                        <p className="text-gray-600 text-sm mb-[1.5vw] text-center">{gebaar.explanation}</p>
                         <div className="flex gap-4 justify-evenly">
                             <button className='flex justify-center items-center  rounded-full bg-correct'>
-                                <p className=" text-sm p-[0.5vw] text-nowrap">Bekijk in woordenboek</p>
+                                <p className=" text-sm p-[0.6vw] text-nowrap">Bekijk in woordenboek</p>
                             </button>
                             <button className='flex justify-center items-center  rounded-full bg-incorrect'>
-                                <p className=" text-sm p-[0.5vw] text-nowrap">Gebaar verwijderen</p>
+                                <p className=" text-sm p-[0.6vw] text-nowrap">Gebaar verwijderen</p>
                             </button>
                         </div>
 
