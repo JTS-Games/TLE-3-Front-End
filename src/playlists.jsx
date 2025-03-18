@@ -4,7 +4,7 @@ function Playlists() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q4MTY0MzQ3YzgxZGMzZmU4ZWI0YTUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjIxNjM5NCwiZXhwIjoxNzQyMjE5OTk0fQ.eWY9gI7I1ulyu0cXbWQQYh0DAvwTIO9Y2d6-7QBPrIk"; // Zet hier je daadwerkelijke Bearer Token in
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q4MTY0MzQ3YzgxZGMzZmU4ZWI0YTUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjIxOTY5OSwiZXhwIjoxNzQyMjIzMjk5fQ.BI5ReqmP6luCzXWFb9lIgbvsi8ct-aWzBMLQHsWCuu4"; // Zet hier je daadwerkelijke Bearer Token in
 
         fetch("http://145.24.223.113:8000/playlist", {
             headers: {
