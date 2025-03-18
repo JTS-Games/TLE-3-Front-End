@@ -119,7 +119,7 @@ function Test() {
             {isEndPopup && (
                 <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
                     <div>
-                        <h1 className="text-4xl pb-40">Je hebt de test {params.id} met {correctAnswerCount} van de {originalSignNumber} punten gehaald, dat is een {correctAnswerCount/originalSignNumber * 9 + 1}</h1>
+                        <h1 className="text-4xl pb-40">Je hebt test {params.id} met {correctAnswerCount} van de {originalSignNumber} punten gehaald, dat is een {correctAnswerCount/originalSignNumber * 9 + 1}</h1>
                     </div>
                     <div>
                         <button onClick={handleBackButton}
