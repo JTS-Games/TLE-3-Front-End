@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router"; // Gebruik Link voor navigatie
+import { Link } from "react-router"; // Gebruik Link van react-router
 
 function Playlists() {
     const [data, setData] = useState([]);
@@ -26,6 +26,31 @@ function Playlists() {
             .catch(error => console.error("Error fetching data:", error));
     }, []);
 
+    const handleDelete = (id, name) => {
+        // Toon een bevestigingspop-up
+        const isConfirmed = window.confirm(`Weet je zeker dat je de playlist "${name}" wilt verwijderen?`);
+
+        if (isConfirmed) {
+            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q5M2Y4OGQ0ZGJhMzVhM2NiZTZlMjQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjI5MDgyNCwiZXhwIjoxNzQyMzA4ODI0fQ.zcsYolAWYmuJFFvAX2GLy8IUKZIGf7KhmMgyUJTSHTU";
+
+            fetch(`http://145.24.223.113:8000/playlist/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    // Verwijder de playlist uit de state na succesvolle verwijdering
+                    setData(data.filter(playlist => playlist.id !== id));
+                })
+                .catch(error => console.error("Error deleting playlist:", error));
+        }
+    };
+
     return (
         <>
             <div className='flex ml-[5vw] text-3xl font-bold mb-[2vw]'>
@@ -49,15 +74,18 @@ function Playlists() {
                                 {playlist.naam}
                             </Link>
 
-                            <p className='pl-[0.5vw] flex justify-center items-center text-sm'>(
-                                {playlist.gebaren.length} gebaren)
+                            <p className='pl-[0.5vw] flex justify-center items-center text-sm'>
+                                ({playlist.gebaren.length} gebaren)
                             </p>
                         </div>
                         <div className='flex gap-[2vw] mr-[3vw]'>
                             <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
                                 <p className=" text-sm">Gebaren toevoegen</p>
                             </button>
-                            <button className='flex justify-center items-center py-3 px-6 rounded-full bg-incorrect'>
+                            <button
+                                onClick={() => handleDelete(playlist.id, playlist.naam)}
+                                className='flex justify-center items-center py-3 px-6 rounded-full bg-incorrect'
+                            >
                                 <p className="text-sm">Playlist verwijderen</p>
                             </button>
                         </div>
