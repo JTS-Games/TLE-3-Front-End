@@ -1,9 +1,8 @@
-import { useState } from 'react'
-import {createBrowserRouter, RouterProvider} from "react-router";
-import Layout from './Layout.jsx'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from './Layout.jsx';
 import LayoutNoNav from "./layoutNoNav.jsx";
-import Home from './home.jsx'
-import Lesson from './Lesson.jsx'
+import Home from './home.jsx';
+import Lesson from './Lesson.jsx';
 import Playlists from "./playlists.jsx";
 import PlaylistView from "./playlistView.jsx";
 
@@ -13,30 +12,31 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home/>,
+                element: <Home />,
             },
             {
-                path: '/Playlists',
-                element: <Playlists/>,
+                path: '/playlists',
+                element: <Playlists />,
             },
             {
-                path: '/Playlistview',
-                element: <PlaylistView/>,
+                path: '/playlist/:id', // Dynamische route voor specifieke playlist
+                element: <PlaylistView />,
             },
-        ]
+        ],
     },
     {
         element: <LayoutNoNav />,
         children: [
             {
-                path: '/lesson/',
+                path: '/lesson',
                 element: <Lesson />,
             },
-        ]
-    }
-])
+        ],
+    },
+]);
+
 function App() {
-    return <RouterProvider router={router} />
+    return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
