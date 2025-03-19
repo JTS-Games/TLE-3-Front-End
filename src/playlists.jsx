@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router"; // Gebruik Link van react-router
+import { Link, useNavigate } from "react-router";
 
 function Playlists() {
     const [data, setData] = useState([]);
     const [playlistName, setPlaylistName] = useState("");
-    const [successMessage, setSuccessMessage] = useState(""); // ✅ Succesmelding state toevoegen
+    const [successMessage, setSuccessMessage] = useState("");
+    const navigate = useNavigate();
 
     const handleCreatePlaylist = () => {
         if (!playlistName.trim()) {
@@ -32,17 +33,14 @@ function Playlists() {
                 console.log("Playlist aangemaakt:", newPlaylist);
                 setData([...data, newPlaylist]); // Nieuwe playlist toevoegen aan de lijst
                 setPlaylistName(""); // Invoerveld leegmaken
-
-                setSuccessMessage("Playlist succesvol aangemaakt! ✅"); // ✅ Succesmelding instellen
+                setSuccessMessage("Playlist succesvol aangemaakt! ✅");
 
                 setTimeout(() => {
-                    setSuccessMessage(""); // ✅ Succesmelding na 3 sec verbergen
+                    setSuccessMessage("");
                 }, 3000);
-
             })
             .catch(error => console.error("Error creating playlist:", error));
     };
-
 
     useEffect(() => {
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
@@ -67,7 +65,6 @@ function Playlists() {
     }, []);
 
     const handleDelete = (id, name) => {
-        // Toon een bevestigingspop-up
         const isConfirmed = window.confirm(`Weet je zeker dat je de playlist "${name}" wilt verwijderen?`);
 
         if (isConfirmed) {
@@ -84,7 +81,6 @@ function Playlists() {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-                    // Verwijder de playlist uit de state na succesvolle verwijdering
                     setData(data.filter(playlist => playlist.id !== id));
                 })
                 .catch(error => console.error("Error deleting playlist:", error));
@@ -100,7 +96,6 @@ function Playlists() {
             )}
             <div className='flex justify-between ml-[5vw] mr-[5vw] text-3xl font-bold mb-[2vw]'>
                 <div className="flex items-center justify-between gap-10 mt-4">
-
                     <h1>Playlists</h1>
                 </div>
                 <div className='flex gap-[1.5vw]'>
@@ -113,7 +108,7 @@ function Playlists() {
                     />
                     <button
                         onClick={handleCreatePlaylist}
-                        className="bg-correct  px-4 py-1 rounded-full text-lg  "
+                        className="bg-correct px-4 py-1 rounded-full text-lg"
                     >
                         Playlist aanmaken
                     </button>
@@ -126,14 +121,17 @@ function Playlists() {
                 data.map((playlist, index) => (
                     <div key={index} className='flex items-center justify-between bg-white w-[90vw] mr-[5vw] ml-[5vw] rounded-lg shadow-md h-[12vh] mb-[1.25vw]'>
                         <div className='flex'>
-                            <button className='flex justify-center items-center w-[3.5vw] h-[3.5vw] rounded-full bg-green-400 ml-[3vw] hover:bg-green-700'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="white" color='white' viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[2vw] pl-[0.15vw]">
+                            <button
+                                onClick={() => navigate(`/playplaylist/${playlist.id}`)}
+                                className='flex justify-center items-center w-[3.5vw] h-[3.5vw] rounded-full bg-green-400 ml-[3vw] hover:bg-green-700'
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="white" color="white" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[2vw] pl-[0.15vw]">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                                 </svg>
                             </button>
 
                             {/* Gebruik <Link> om te navigeren naar de PlaylistView */}
-                            <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold  hover:underline">
+                            <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold hover:underline">
                                 {playlist.naam}
                             </Link>
 
@@ -142,9 +140,12 @@ function Playlists() {
                             </p>
                         </div>
                         <div className='flex gap-[2vw] mr-[3vw]'>
-                            <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
-                                <p className=" text-sm">Gebaren toevoegen</p>
-                            </button>
+                            <Link to="/signBook">
+                                <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
+                                    <p className="text-sm">Gebaren toevoegen</p>
+                                </button>
+                            </Link>
+
                             <button
                                 onClick={() => handleDelete(playlist.id, playlist.naam)}
                                 className='flex justify-center items-center py-3 px-6 rounded-full bg-incorrect'

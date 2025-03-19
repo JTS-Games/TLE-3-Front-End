@@ -32,7 +32,7 @@ function Playlist() {
 
     // Laad de playlist met alle gebaren
     useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY"; // Vervang dit door je token
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
         fetch(`http://145.24.223.113:8000/playlist/${id}`, {
             headers: {
                 "Accept": "application/json",
@@ -108,7 +108,7 @@ function Playlist() {
             {isStartPopup && (
                 <section className="flex flex-col w-full h-screen bg-background justify-center items-center">
                     <div>
-                        <h1 className="text-4xl pb-40">Leer de gebaren van playlist {id}.</h1>
+                        <h1 className="text-4xl pb-40">Leer de gebaren van playlist {playlist && playlist.naam}.</h1>
                     </div>
                     <div>
                         <button onClick={handlePopupButton} className="drop-shadow-md bg-button h-22 py-8 px-32 rounded-full">
@@ -120,7 +120,7 @@ function Playlist() {
             {isEndPopup && (
                 <section className="flex flex-col w-full h-screen bg-background justify-center items-center">
                     <div>
-                        <h1 className="text-4xl pb-40">Je hebt alle gebaren van playlist {id} afgerond!</h1>
+                        <h1 className="text-4xl pb-40">Je hebt alle gebaren van playlist {playlist && playlist.naam} afgerond!</h1>
                     </div>
                     <div>
                         <button onClick={navigateBack} className="drop-shadow-md bg-correct h-22 py-8 px-32 rounded-full">
