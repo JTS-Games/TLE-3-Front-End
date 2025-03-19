@@ -12,6 +12,8 @@ import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./SSOCallback.jsx";
 import ErrorPage from "./errorPage.jsx";
+import PlaylistView from "./playlistView.jsx";
+import Playlists from "./playlists.jsx";
 
 const router = createBrowserRouter([
     {
