@@ -1,23 +1,25 @@
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
-    const token = localStorage.getItem("responseToken");
-    const expiry = localStorage.getItem("responseTokenExpiry");
     const navigate = useNavigate();
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true); // Prevent initial render
 
     useEffect(() => {
-        // If the token is missing or expired, clear the localStorage and navigate to login
+        const token = localStorage.getItem("responseToken");
+        const expiry = localStorage.getItem("responseTokenExpiry");
+
         if (!token || !expiry || Date.now() > Number(expiry)) {
             console.log("responseToken is expired or missing.");
             localStorage.clear();
             navigate("/login");
+        } else {
+            setIsCheckingAuth(false);
         }
-    }, [token, expiry, navigate]);
+    }, [navigate]);
 
-    // If the token is valid, render the children components
-    if (!token || !expiry || Date.now() > Number(expiry)) {
-        return null; // Or a loading indicator, but don't render children
+    if (isCheckingAuth) {
+        return <div>Loading...</div>;
     }
 
     return <>{children}</>;
