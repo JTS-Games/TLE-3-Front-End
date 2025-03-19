@@ -6,7 +6,7 @@ function Layout(){
             <header>
                 <nav className="hidden md:flex items-center justify-between px-20 py-5 mb-5 bg-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.10)]">
                     <div>
-                        <p>(app naam)</p>
+                        <p>Handygo</p>
                     </div>
                     <div className="hidden md:flex items-center justify-end gap-6">
                         <Link to="/signBook">
@@ -70,7 +70,7 @@ function Layout(){
             </main>
             <footer className="flex flex-col md:flex-row items-center justify-between px-5 md:px-20 py-5 bg-white drop-shadow-[0_-10px_10px_rgba(0,0,0,0.10)]">
                 <div className="mb-3 md:mb-0">
-                    <p>(app naam) ©2025</p>
+                    <p>Handygo ©2025</p>
                 </div>
 
                 <div className="flex flex-col gap-3 text-center md:text-left">

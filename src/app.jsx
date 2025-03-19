@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, useRouteError } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
 import SignBook from "./SignBook.jsx";
@@ -8,6 +8,7 @@ import Lesson from "./Lesson.jsx";
 import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./SSOCallback.jsx";
+import ErrorPage from "./errorPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                 path: '/signs/:id',
                 element: <ProtectedRoute><SignDetail/></ProtectedRoute>
             },
+            {
+                path: "*",
+                element: <ErrorPage/>,
+            }
         ]
     },
     {
@@ -35,13 +40,21 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute><Lesson /></ProtectedRoute>
             },
             {
+                path: '/selflessons/:id',
+                element: <SelfLesson />,
+            },
+            {
+                path: '/test/:id',
+                element: <Test />,
+            },
+            {
                 path: "/login",
                 element: <Login />,
             },
             {
                 path: "/SSOCallback",
                 element: <SSOCallback/>
-            }
+            },
         ],
     },
 ]);
