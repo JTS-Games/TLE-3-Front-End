@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
         if (!token || !expiry || Date.now() > Number(expiry)) {
             console.log("responseToken is expired or missing.");
             localStorage.clear();
-            navigate("/login");
+            navigate("/");
         } else {
             setIsCheckingAuth(false);
         }

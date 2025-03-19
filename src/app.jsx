@@ -10,16 +10,13 @@ import Test from "./Test.jsx";
 import SelfLesson from "./SelfLesson.jsx";
 import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
-
+import SSOCallback from "./component/SSOCallback.jsx";
 import ErrorPage from "./errorPage.jsx";
 import PlaylistView from "./playlistView.jsx";
 import Playlists from "./playlists.jsx";
 import PlayPlaylist from "./PlayPlaylist.jsx";
-// import ProtectedRoute from "./component/PrivateRoute.jsx";
-import SSOCallback from "./component/SSOCallback.jsx";
 import TokenProvider from "./component/TokenContext.jsx";
 import SSOCallbackLogin from "./component/SSOCallbackLogin.jsx";
-import PrivateRoute from "./component/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,20 +28,19 @@ const router = createBrowserRouter([
             },
             {
                 path: "/playlists",
-                element: <Playlists />,
+                element: <ProtectedRoute><Playlists/></ProtectedRoute>,
             },
             {
                 path: "/playlist/:id",
-                element: <PlaylistView />,
+                element: <ProtectedRoute><PlaylistView/></ProtectedRoute>,
             },
-
             {
                 path: "/signBook",
-                element: <SignBook/>,
+                element: <ProtectedRoute><SignBook/></ProtectedRoute>,
             },
             {
                 path: '/signs/:id',
-                element: <SignDetail/>,
+                element: <ProtectedRoute><SignDetail/></ProtectedRoute>,
             },
             {
                 path: "*",
@@ -61,14 +57,14 @@ const router = createBrowserRouter([
             },
             {
                 path: '/selflessons/:id',
-                element: <SelfLesson />,
+                element: <ProtectedRoute><SelfLesson/></ProtectedRoute>,
             },
             {
                 path: '/test/:id',
-                element: <Test />,
+                element: <ProtectedRoute><Test/></ProtectedRoute>,
             },
             {
-                path: "/login",
+                path: "/",
                 element: <Login />,
             },
             {
@@ -79,10 +75,9 @@ const router = createBrowserRouter([
                 path: "/SSOCallbackLogin",
                 element: <SSOCallbackLogin/>
             },
-
             {
                 path: "/playplaylist/:id",
-                element: <PlayPlaylist />,
+                element: <ProtectedRoute><PlayPlaylist/></ProtectedRoute>,
             },
 
         ],

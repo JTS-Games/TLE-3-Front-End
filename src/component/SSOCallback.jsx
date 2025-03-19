@@ -19,7 +19,7 @@ const SSOCallback = () => {
             registerUser(name, email, token, loginCode);
         } else {
             console.error("Er mist gegevens voor het registreren.")
-            navigate('/login');
+            navigate('/');
         }
 
         async function registerUser(name, email, token, loginCode) {
@@ -43,7 +43,7 @@ const SSOCallback = () => {
                     console.error('Failed request:', response.status, responseText, loginCode);
                     sessionStorage.clear()
                     localStorage.clear()
-                    navigate('/login');
+                    navigate('/');
                     return;
                 }
 
@@ -64,10 +64,10 @@ const SSOCallback = () => {
                     console.error("responseToken niet ontvangen in de response")
                 }
 
-                navigate('/signbook');
+                navigate('/home');
             } catch (error) {
                 console.error('Error:', error);
-                navigate('/login');
+                navigate('/');
             }
         }
     }, [navigate]);

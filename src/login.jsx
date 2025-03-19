@@ -9,7 +9,7 @@ const Login = () => {
     useEffect(() => {
         const storedToken = localStorage.getItem("responseToken")
         if (storedToken) {
-            navigate("/signbook")
+            navigate("/home")
         }
     }, [navigate])
 
@@ -59,19 +59,20 @@ const Login = () => {
                 <div className="font-kulim">
                     <h1 className="font-semibold italic text-[2.25rem] md:text-[4rem] md:py-3">GEBAREN</h1>
                     <h1 className="font-semibold italic text-[2.25rem] md:text-[4rem] md:py-3">BIJ INTAKE</h1>
-                    <p className="font-light hidden md:visible md:text-2xl">Leer, oefen en onthoud gebaren op een
+                    <p className="font-light hidden md:flex md:text-2xl">Leer, oefen en onthoud gebaren op een
                         interactive manier.</p>
                 </div>
             </section>
-            <section className="flex justify-center items-center h-3/5 md:h-full md:w-3/5 ">
+            <section className="flex justify-center items-center h-3/5 md:h-full md:w-3/5 flex-col md:flex-row">
                 <div className="w-full flex justify-center items-center flex-col">
                     <div className="flex flex-col">
                         <input
                             type="text"
                             value={loginCode}
                             onChange={(e) => setLoginCode(e.target.value)}
+                            maxLength={4}
                             className="mb-4 rounded-full min-w-[266px] text-center py-2"
-                            placeholder="Code"
+                            placeholder="0000"
                         />
                         <button onClick={handleVerifyCode}
                                 className={`
@@ -101,7 +102,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                <span className="w-[5px] mx-2 h-96 bg-[#CCE6FE]"></span>
+                <span className="md:w-[5px] w-80 md:mx-2 my-12 md:h-96 h-[5px] rounded-full bg-[#CCE6FE]"></span>
 
                 <div className="w-full flex justify-center">
                     <button onClick={handleLogin}

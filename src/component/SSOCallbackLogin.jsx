@@ -17,7 +17,7 @@ const SSOCallbackLogin = () => {
 
             loginUser(name, email, token);
         } else {
-            navigate('/login');
+            navigate('/');
         }
 
         async function loginUser(name, email, token) {
@@ -39,7 +39,7 @@ const SSOCallbackLogin = () => {
                     console.error('Failed request:', response.status, responseText);
                     sessionStorage.clear()
                     localStorage.clear()
-                    navigate('/login');
+                    navigate('/');
                     return;
                 }
 
@@ -63,7 +63,7 @@ const SSOCallbackLogin = () => {
                 navigate('/home');
             } catch (error) {
                 console.error('Error:', error);
-                navigate('/login');
+                navigate('/');
             }
         }
     }, [navigate])
