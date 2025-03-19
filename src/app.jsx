@@ -1,15 +1,16 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
-import Home from './home.jsx'
+import Home from './home.jsx';
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
-import Lesson from './Lesson.jsx'
-import Home from "./home.jsx";
-import Lesson from "./Lesson.jsx";
+import Lesson from './Lesson.jsx';
 import Login from "./login.jsx";
-import ProtectedRoute from "./component/PrivateRoute.jsx";
-import SSOCallback from "./SSOCallback.jsx";
+// import ProtectedRoute from "./component/PrivateRoute.jsx";
+import SSOCallback from "./component/SSOCallback.jsx";
+import TokenProvider from "./component/TokenContext.jsx";
+import SSOCallbackLogin from "./component/SSOCallbackLogin.jsx";
+import PrivateRoute from "./component/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home/>,
+                element: <Home />,
             },
             {
                 path: '/signBook',
-                element: <SignBook/>,
+                element: <PrivateRoute><SignBook/></PrivateRoute>,
             },
             {
                 path: '/signs/:id',
-                element: <SignDetail/>,
+                element: <SignDetail />,
             },
         ]
     },
@@ -42,14 +43,22 @@ const router = createBrowserRouter([
             },
             {
                 path: "/SSOCallback",
-                element: <SSOCallback/>
+                element: <SSOCallback />,
+            },
+            {
+                path: "/SSOCallbackLogin",
+                element: <SSOCallbackLogin/>
             }
         ],
     },
 ]);
 
 function App() {
-    return <RouterProvider router={router} />
+    return (
+        <TokenProvider>
+            <RouterProvider router={router} />
+        </TokenProvider>
+    );
 }
 
-export default App
+export default App;
