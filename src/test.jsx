@@ -50,7 +50,7 @@ function Test() {
         const response = await fetch(`http://145.24.223.113:8000/signs/filtered?lesson=${params.id}&method=SHUFFLE`, {
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q5NjYxMDQzMTljODMzNTk0ZmFkN2MiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjMwMDY4OCwiZXhwIjoxNzQyMzE4Njg4fQ.EPjNmd5kIJThkJVJOP71XOaaKreNRTcPF93rLy_oUkI`
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYTAxZDVmN2I5NzgyMjU1MDgzMTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODEwODUsImV4cCI6MTc0MjM5OTA4NX0._jTa3ykJUnoyxU6R0APqXIkJG3M-q65V2dP5xYG9CZE`
             }
         });
         const data = await response.json();
@@ -202,9 +202,9 @@ function Test() {
             )}
             {isCorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-20 px-32 bg-correct rounded-t-[50px]">
+                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-16 px-32 bg-correct rounded-t-[50px]">
                         <div className="flex items-center">
-                            <p className="text-4xl lg:text-8xl">Correct!</p>
+                            <p className="text-4xl lg:text-6xl">Correct!</p>
                         </div>
                         <div className="flex items-center w-[50%]">
                             <p>Dit gebaar betekent inderdaad {sign.translation}</p>
@@ -219,9 +219,9 @@ function Test() {
             )}
             {isIncorrect && (
                 <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-20 px-32 bg-incorrect rounded-t-[50px]">
+                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-16 px-32 bg-incorrect rounded-t-[50px]">
                         <div className="flex items-center text-white">
-                            <p className="text-4xl lg:text-8xl">Incorrect</p>
+                            <p className="text-4xl lg:text-6xl">Incorrect</p>
                         </div>
                         <div className="flex flex-col lg:flex-row items-center gap-10">
                             <div>

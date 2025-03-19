@@ -2,24 +2,24 @@ import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
-import Home from "./home.jsx";
-import Lesson from "./Lesson.jsx";
-import Playlists from "./playlists.jsx";
-import PlaylistView from "./playlistView.jsx";
+import Home from './home.jsx'
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
-import ErrorPage from "./errorPage.jsx";
-import Test from "./test.jsx";
+import Lesson from './Lesson.jsx'
+import SelfLesson from './SelfLesson.jsx'
+import Test from './Test.jsx'
 import Login from "./login.jsx";
+import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./SSOCallback.jsx";
+import ErrorPage from "./errorPage.jsx";
 
 const router = createBrowserRouter([
     {
         element: <Layout />,
         children: [
             {
-                path: "/",
-                element: <Home />,
+                path: '/',
+                element: <Home/>,
             },
             {
                 path: "/playlists",
@@ -34,24 +34,28 @@ const router = createBrowserRouter([
                 element: <SignBook />,
             },
             {
-                path: "/signs/:id",
-                element: <SignDetail />,
+                path: '/signs/:id',
+                element: <SignDetail/>,
             },
             {
                 path: "*",
-                element: <ErrorPage />,
-            },
-        ],
+                element: <ErrorPage/>,
+            }
+        ]
     },
     {
         element: <LayoutNoNav />,
         children: [
             {
-                path: "/lesson/",
+                path: '/lessons/:id',
                 element: <Lesson />,
             },
             {
-                path: "/test/:id",
+                path: '/selflessons/:id',
+                element: <SelfLesson />,
+            },
+            {
+                path: '/test/:id',
                 element: <Test />,
             },
             {
@@ -60,14 +64,14 @@ const router = createBrowserRouter([
             },
             {
                 path: "/SSOCallback",
-                element: <SSOCallback />,
+                element: <SSOCallback/>
             },
         ],
     },
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />
 }
 
 export default App;
