@@ -15,6 +15,11 @@ import ErrorPage from "./errorPage.jsx";
 import PlaylistView from "./playlistView.jsx";
 import Playlists from "./playlists.jsx";
 import PlayPlaylist from "./PlayPlaylist.jsx";
+// import ProtectedRoute from "./component/PrivateRoute.jsx";
+import SSOCallback from "./component/SSOCallback.jsx";
+import TokenProvider from "./component/TokenContext.jsx";
+import SSOCallbackLogin from "./component/SSOCallbackLogin.jsx";
+import PrivateRoute from "./component/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -34,11 +39,12 @@ const router = createBrowserRouter([
             },
 
             {
-
+                path: '/signBook',
+                element: <SignBook/>,
             },
             {
                 path: '/signs/:id',
-                element: <ProtectedRoute><SignDetail/></ProtectedRoute>
+                element: <SignDetail/>,
             },
             {
                 path: "*",
@@ -67,6 +73,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "/SSOCallback",
+                element: <SSOCallback />,
+            },
+            {
+                path: "/SSOCallbackLogin",
+                element: <SSOCallbackLogin/>
+            }
                 element: <SSOCallback/>
             },
             {
@@ -79,7 +91,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <RouterProvider router={router} />
+    return (
+        <TokenProvider>
+            <RouterProvider router={router} />
+        </TokenProvider>
+    );
 }
 
 export default App;

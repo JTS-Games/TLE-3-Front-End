@@ -1,43 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
-    const [isValid, setIsValid] = useState(null);
     const navigate = useNavigate();
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true); // Prevent initial render
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        console.log(`${token} hallo`)
+        const token = localStorage.getItem("responseToken");
+        const expiry = localStorage.getItem("responseTokenExpiry");
 
-        if (!token) {
-            setIsValid(false);
-            return;
+        if (!token || !expiry || Date.now() > Number(expiry)) {
+            console.log("responseToken is expired or missing.");
+            localStorage.clear();
+            navigate("/login");
+        } else {
+            setIsCheckingAuth(false);
         }
+    }, [navigate]);
 
-        axios.get('https://cmgt.hr.nl/api/validate-sso-token', {
-            headers: { Token: token }
-        })
-            .then(response => {
-                if (response.status === 200) {
-                    setIsValid(true);
-                } else {
-                    setIsValid(false);
-                }
-            })
-            .catch(error => {
-                console.error("Token validation failed:", error);
-                setIsValid(false);
-            });
-    }, []);
-
-    useEffect(() => {
-        if (isValid === false) {
-            navigate('/login');
-        }
-    }, [isValid, navigate]);
-
-    if (isValid === null) {
+    if (isCheckingAuth) {
         return <div>Loading...</div>;
     }
 
