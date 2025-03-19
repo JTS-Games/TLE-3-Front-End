@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
