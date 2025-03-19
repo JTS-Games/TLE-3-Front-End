@@ -3,9 +3,41 @@ import { Link } from "react-router"; // Gebruik Link van react-router
 
 function Playlists() {
     const [data, setData] = useState([]);
+    const [playlistName, setPlaylistName] = useState("");
+
+    const handleCreatePlaylist = () => {
+        if (!playlistName.trim()) {
+            alert("Voer een naam in voor de playlist!");
+            return;
+        }
+
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
+
+        fetch("http://145.24.223.113:8000/playlist", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ playlist_naam: playlistName })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(newPlaylist => {
+                console.log("Playlist aangemaakt:", newPlaylist);
+                setData([...data, newPlaylist]); // Nieuwe playlist toevoegen aan de lijst
+                setPlaylistName(""); // Invoerveld leegmaken
+            })
+            .catch(error => console.error("Error creating playlist:", error));
+    };
+
 
     useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q5M2Y4OGQ0ZGJhMzVhM2NiZTZlMjQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjI5MDgyNCwiZXhwIjoxNzQyMzA4ODI0fQ.zcsYolAWYmuJFFvAX2GLy8IUKZIGf7KhmMgyUJTSHTU";
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
 
         fetch("http://145.24.223.113:8000/playlist", {
             headers: {
@@ -53,8 +85,26 @@ function Playlists() {
 
     return (
         <>
-            <div className='flex ml-[5vw] text-3xl font-bold mb-[2vw]'>
-                <h1>Mijn playlists ({data.length})</h1>
+            <div className='flex justify-between ml-[5vw] mr-[5vw] text-3xl font-bold mb-[2vw]'>
+                <div className="flex items-center justify-between gap-10 mt-4">
+
+                    <h1>Playlists</h1>
+                </div>
+                <div className='flex gap-[2vw]'>
+                    <input
+                        type="text"
+                        placeholder="Naam playlist"
+                        value={playlistName}
+                        onChange={(e) => setPlaylistName(e.target.value)}
+                        className="border rounded-full px-2 py-1 text-lg font-normal"
+                    />
+                    <button
+                        onClick={handleCreatePlaylist}
+                        className="bg-correct  px-4 py-1 rounded-full text-lg  "
+                    >
+                        Playlist aanmaken
+                    </button>
+                </div>
             </div>
 
             {data.length === 0 ? (
@@ -63,14 +113,14 @@ function Playlists() {
                 data.map((playlist, index) => (
                     <div key={index} className='flex items-center justify-between bg-white w-[90vw] mr-[5vw] ml-[5vw] rounded-lg shadow-md h-[12vh] mb-[1.25vw]'>
                         <div className='flex'>
-                            <button className='flex justify-center items-center w-[3.5vw] h-[3.5vw] rounded-full bg-green-400 ml-[3vw]'>
+                            <button className='flex justify-center items-center w-[3.5vw] h-[3.5vw] rounded-full bg-green-400 ml-[3vw] hover:bg-green-700'>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" color='white' viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-[2vw] pl-[0.15vw]">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                                 </svg>
                             </button>
 
                             {/* Gebruik <Link> om te navigeren naar de PlaylistView */}
-                            <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold text-blue-500 hover:underline">
+                            <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold  hover:underline">
                                 {playlist.naam}
                             </Link>
 

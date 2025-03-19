@@ -8,7 +8,7 @@ function PlaylistView() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q5M2Y4OGQ0ZGJhMzVhM2NiZTZlMjQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjI5MDgyNCwiZXhwIjoxNzQyMzA4ODI0fQ.zcsYolAWYmuJFFvAX2GLy8IUKZIGf7KhmMgyUJTSHTU";
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
 
         fetch(`http://145.24.223.113:8000/playlist/${id}`, {
             headers: {
