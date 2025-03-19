@@ -140,9 +140,12 @@ function Playlists() {
                             </p>
                         </div>
                         <div className='flex gap-[2vw] mr-[3vw]'>
-                            <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
-                                <p className="text-sm">Gebaren toevoegen</p>
-                            </button>
+                            <Link to="/signBook">
+                                <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
+                                    <p className="text-sm">Gebaren toevoegen</p>
+                                </button>
+                            </Link>
+
                             <button
                                 onClick={() => handleDelete(playlist.id, playlist.naam)}
                                 className='flex justify-center items-center py-3 px-6 rounded-full bg-incorrect'
