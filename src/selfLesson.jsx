@@ -7,8 +7,6 @@ function SelfLesson() {
     const params = useParams();
     const [signs, setSigns] = useState([]);
     const [sign, setSign] = useState([]);
-    const [isCorrect, setIsCorrect] = useState(false);
-    const [isIncorrect, setIsIncorrect] = useState(false);
     const [isStartPopup, setIsStartPopup] = useState(true);
     const [isEndPopup, setIsEndPopup] = useState(false);
     const [isProgressBar, setIsProgressBar] = useState(false);
@@ -29,18 +27,6 @@ function SelfLesson() {
 
     const [isHint, setIsHint] = useState(false);
 
-    const [formData, setFormData] = useState({
-        answer: '',
-    });
-
-    const handleInputChange = (event) => {
-        const {name, value} = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
     //loads data
     useEffect(() => {
         loadData();
@@ -58,25 +44,6 @@ function SelfLesson() {
         setOriginalSignNumber(data.items.length);
     }
 
-    //Handles button
-    async function handleSubmitButton(event) {
-        event.preventDefault();
-        if (formData.answer.toLowerCase() === sign.translation.toLowerCase()) {
-            correctAnswer()
-        } else {
-            incorrectAnswer()
-        }
-    }
-    async function handleCorrectButton(event) {
-        event.preventDefault();
-        correctAnswer()
-    }
-
-    async function handleIncorrectButton(event) {
-        event.preventDefault();
-        incorrectAnswer()
-    }
-
     function questionList() {
         if (signs.items.length > 0) {
             console.log(signs.items[0]);
@@ -88,21 +55,10 @@ function SelfLesson() {
         }
     }
 
-    function correctAnswer() {
-        setIsCorrect(true);
-    }
-
-    function incorrectAnswer() {
-        setIsIncorrect(true);
-    }
-
     function handleNextButton() {
-        setIsCorrect(false);
-        setIsIncorrect(false);
         setIsHint(false);
         setIsExtraButton(false);
-        formData.answer=""
-            questionList()
+        questionList()
     }
 
     function handlePopupButton() {
@@ -221,12 +177,12 @@ function SelfLesson() {
                     {isExtraButton && (
                         <div className="flex items-center justify-center px-10 flex-row gap-10">
                             <div>
-                                <button type="submit" onClick={handleIncorrectButton}
+                                <button type="submit" onClick={handleNextButton}
                                         className="drop-shadow-md bg-incorrect py-8 px-28 rounded-full text-white">Ik doe dit gebaar incorrect
                                 </button>
                             </div>
                             <div>
-                                <button type="submit" onClick={handleCorrectButton}
+                                <button type="submit" onClick={handleNextButton}
                                         className="drop-shadow-md bg-correct py-8 px-28 rounded-full">Ik doe dit gebaar correct
                                 </button>
                             </div>
@@ -234,40 +190,6 @@ function SelfLesson() {
                     )}
                 </form>
             </section>
-            )}
-            {isCorrect && (
-                <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div
-                        className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-16 px-32 bg-correct rounded-t-[50px]">
-                        <div className="flex items-center">
-                            <p className="text-4xl lg:text-6xl">Correct!</p>
-                        </div>
-                        <div className="flex flex-col lg:flex-row items-center gap-10">
-                            <div>
-                                <button onClick={handleNextButton}
-                                        className="drop-shadow-md bg-button py-8 px-32 rounded-full">Volgende vraag
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            )}
-            {isIncorrect && (
-                <section className="flex sticky bottom-0 w-[100%] justify-center">
-                    <div
-                        className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-16 px-32 bg-incorrect rounded-t-[50px]">
-                        <div className="flex items-center text-white">
-                            <p className="text-4xl lg:text-6xl">Incorrect</p>
-                        </div>
-                        <div className="flex flex-col lg:flex-row items-center gap-10">
-                            <div>
-                                <button onClick={handleNextButton}
-                                        className="drop-shadow-md bg-button py-8 px-32 rounded-full">Volgende vraag
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             )}
         </main>
     );
