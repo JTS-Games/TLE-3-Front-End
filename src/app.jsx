@@ -14,6 +14,7 @@ import SSOCallback from "./SSOCallback.jsx";
 import ErrorPage from "./errorPage.jsx";
 import PlaylistView from "./playlistView.jsx";
 import Playlists from "./playlists.jsx";
+import PlayPlaylist from "./PlayPlaylist.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,9 +32,9 @@ const router = createBrowserRouter([
                 path: "/playlist/:id",
                 element: <PlaylistView />,
             },
+
             {
-                path: '/signBook',
-                element: <ProtectedRoute><SignBook/></ProtectedRoute>
+
             },
             {
                 path: '/signs/:id',
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
                 path: "/SSOCallback",
                 element: <SSOCallback/>
             },
+            {
+                path: "/playplaylist/:id",
+                element: <PlayPlaylist />,
+            },
+
         ],
     },
 ]);
