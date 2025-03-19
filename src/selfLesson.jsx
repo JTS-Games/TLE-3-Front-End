@@ -116,7 +116,7 @@ function SelfLesson() {
                 {isStartPopup && (
                     <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
                         <div>
-                            <h1 className="text-4xl pb-40">Leer de gebaren van les {params.id}</h1>
+                            <h1 className="text-4xl pb-40">Doe de gebaren van les {params.id} zelf na.</h1>
                         </div>
                         <div>
                             <button onClick={handlePopupButton}
