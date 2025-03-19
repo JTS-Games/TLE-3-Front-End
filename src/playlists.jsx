@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router"; // Gebruik Link van react-router
+import { Link } from "react-router";
 
 function Playlists() {
     const [data, setData] = useState([]);
     const [playlistName, setPlaylistName] = useState("");
+    const [successMessage, setSuccessMessage] = useState(""); // ✅ Succesmelding state toevoegen
 
     const handleCreatePlaylist = () => {
         if (!playlistName.trim()) {
@@ -28,13 +29,16 @@ function Playlists() {
                 return response.json();
             })
             .then(newPlaylist => {
-                console.log("Playlist aangemaakt:", newPlaylist);
-                setData([...data, newPlaylist]); // Nieuwe playlist toevoegen aan de lijst
+                setData([...data, newPlaylist]);
                 setPlaylistName(""); // Invoerveld leegmaken
+                setSuccessMessage("Playlist succesvol aangemaakt! ✅"); // ✅ Succesmelding instellen
+
+                setTimeout(() => {
+                    setSuccessMessage(""); // ✅ Succesmelding na 3 sec verbergen
+                }, 3000);
             })
             .catch(error => console.error("Error creating playlist:", error));
     };
-
 
     useEffect(() => {
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
@@ -52,45 +56,24 @@ function Playlists() {
                 return response.json();
             })
             .then(data => {
-                console.log("Fetched data:", data);
                 setData(data);
             })
             .catch(error => console.error("Error fetching data:", error));
     }, []);
 
-    const handleDelete = (id, name) => {
-        // Toon een bevestigingspop-up
-        const isConfirmed = window.confirm(`Weet je zeker dat je de playlist "${name}" wilt verwijderen?`);
-
-        if (isConfirmed) {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q5M2Y4OGQ0ZGJhMzVhM2NiZTZlMjQiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc0MjI5MDgyNCwiZXhwIjoxNzQyMzA4ODI0fQ.zcsYolAWYmuJFFvAX2GLy8IUKZIGf7KhmMgyUJTSHTU";
-
-            fetch(`http://145.24.223.113:8000/playlist/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Accept": "application/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    // Verwijder de playlist uit de state na succesvolle verwijdering
-                    setData(data.filter(playlist => playlist.id !== id));
-                })
-                .catch(error => console.error("Error deleting playlist:", error));
-        }
-    };
-
     return (
         <>
+            {successMessage && (
+                <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white py-2 px-4 rounded-lg shadow-md transition-opacity duration-500">
+                    {successMessage}
+                </div>
+            )}
+
             <div className='flex justify-between ml-[5vw] mr-[5vw] text-3xl font-bold mb-[2vw]'>
                 <div className="flex items-center justify-between gap-10 mt-4">
-
                     <h1>Playlists</h1>
                 </div>
-                <div className='flex gap-[2vw]'>
+                <div className='flex gap-[1.5vw]'>
                     <input
                         type="text"
                         placeholder="Naam playlist"
@@ -100,7 +83,7 @@ function Playlists() {
                     />
                     <button
                         onClick={handleCreatePlaylist}
-                        className="bg-correct  px-4 py-1 rounded-full text-lg  "
+                        className="bg-correct px-4 py-1 rounded-full text-lg"
                     >
                         Playlist aanmaken
                     </button>
@@ -119,8 +102,7 @@ function Playlists() {
                                 </svg>
                             </button>
 
-                            {/* Gebruik <Link> om te navigeren naar de PlaylistView */}
-                            <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold  hover:underline">
+                            <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold hover:underline">
                                 {playlist.naam}
                             </Link>
 
@@ -130,7 +112,7 @@ function Playlists() {
                         </div>
                         <div className='flex gap-[2vw] mr-[3vw]'>
                             <button className='flex justify-center items-center py-3 px-6 rounded-full bg-correct'>
-                                <p className=" text-sm">Gebaren toevoegen</p>
+                                <p className="text-sm">Gebaren toevoegen</p>
                             </button>
                             <button
                                 onClick={() => handleDelete(playlist.id, playlist.naam)}
