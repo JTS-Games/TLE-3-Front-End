@@ -3,23 +3,27 @@ import SignCard from "./SignCard.jsx";
 
 function SignBook() {
     const [signs, setSigns] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filterLesson, setFilterLesson] = useState("");
+    const [searchTerm, setSearchTerm] = useState(''); // Correct initialization
+    const [filterLesson, setFilterLesson] = useState(''); // Correct initialization
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhOTE1MDVmN2I5NzgyMjU1MDgwNTQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzNzcyOTYsImV4cCI6MTc0MjM5NTI5Nn0.-EUFTc910M6IuP2Hw2FAV1V38GtN-HaIldVben9shck";
 
     async function loadData(lesson) {
         const url = lesson
             ? `http://145.24.223.113:8000/signs/filtered?lesson=${lesson}`
             : "http://145.24.223.113:8000/signs";
 
+
         try {
             const response = await fetch(url, {
                 headers: {
-                    Accept: "application/json",
+                    "Authorization": `Bearer ${token}`,
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
                 },
             });
 
             const data = await response.json();
-            setSigns(data.items);
+            setSigns(data.items || {});
         } catch (error) {
             console.error("Er is een fout opgetreden:", error);
         }
@@ -50,7 +54,7 @@ function SignBook() {
                 Gebarenboek
             </h1>
 
-            {/* Container voor filter en zoekbalk */}
+            {/* Container voor filter en zoekbalk*/}
             <div className="sticky top-2 flex justify-between mb-8 space-x-4">
                 <div className="w-1/4">
                     <select

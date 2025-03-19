@@ -1,10 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
-import Home from './home.jsx'
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
-import Lesson from './Lesson.jsx'
 import Home from "./home.jsx";
 import Lesson from "./Lesson.jsx";
 import Login from "./login.jsx";
@@ -17,15 +15,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home/>,
+                element:<ProtectedRoute><Home/></ProtectedRoute>
             },
             {
                 path: '/signBook',
-                element: <SignBook/>,
+                element: <ProtectedRoute><SignBook/></ProtectedRoute>
             },
             {
                 path: '/signs/:id',
-                element: <SignDetail/>,
+                element: <ProtectedRoute><SignDetail/></ProtectedRoute>
             },
         ]
     },
@@ -34,7 +32,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/lessons/:id',
-                element: <Lesson />,
+                element: <ProtectedRoute><Lesson /></ProtectedRoute>
             },
             {
                 path: "/login",
