@@ -1,4 +1,5 @@
-import { createBrowserRouter, RouterProvider, useRouteError } from "react-router-dom";
+import { useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "./Layout.jsx";
 import LayoutNoNav from "./layoutNoNav.jsx";
 import SignBook from "./SignBook.jsx";
@@ -11,6 +12,8 @@ import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./SSOCallback.jsx";
 import ErrorPage from "./errorPage.jsx";
+import PlaylistView from "./playlistView.jsx";
+import Playlists from "./playlists.jsx";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +24,16 @@ const router = createBrowserRouter([
                 element:<ProtectedRoute><Home/></ProtectedRoute>
             },
             {
+                path: "/playlists",
+                element: <Playlists />,
+            },
+            {
+                path: "/playlist/:id",
+                element: <PlaylistView />,
+            },
+            {
+                path: "/signBook",
+                element: <SignBook />,
                 path: '/signBook',
                 element: <ProtectedRoute><SignBook/></ProtectedRoute>
             },
@@ -65,4 +78,4 @@ function App() {
     return <RouterProvider router={router} />
 }
 
-export default App
+export default App;
