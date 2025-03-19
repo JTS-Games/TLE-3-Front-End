@@ -32,8 +32,6 @@ const router = createBrowserRouter([
                 element: <PlaylistView />,
             },
             {
-                path: "/signBook",
-                element: <SignBook />,
                 path: '/signBook',
                 element: <ProtectedRoute><SignBook/></ProtectedRoute>
             },
