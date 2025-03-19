@@ -5,6 +5,7 @@ import Home from './home.jsx'
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
 import Lesson from './Lesson.jsx'
+import SelfLesson from './SelfLesson.jsx'
 import Test from './Test.jsx'
 import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
             {
                 path: '/lessons/:id',
                 element: <Lesson />,
+            },
+            {
+                path: '/selflessons/:id',
+                element: <SelfLesson />,
             },
             {
                 path: '/test/:id',
