@@ -60,7 +60,7 @@ const SSOCallbackLogin = () => {
                     console.error("responseToken niet ontvangen in de response")
                 }
 
-                navigate('/signbook');
+                navigate('/home');
             } catch (error) {
                 console.error('Error:', error);
                 navigate('/login');

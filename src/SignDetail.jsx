@@ -8,7 +8,7 @@ function SignDetail() {
     const { id } = useParams();
     const [signs, setSigns] = useState([]);  // Store all signs
     const [currentSignIndex, setCurrentSignIndex] = useState(null);  // Track current sign
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhOTE1MDVmN2I5NzgyMjU1MDgwNTQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzNzcyOTYsImV4cCI6MTc0MjM5NTI5Nn0.-EUFTc910M6IuP2Hw2FAV1V38GtN-HaIldVben9shck";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYzMxMDRlZmZkNGQ2MzBmNTI1MjMiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTc0MjM5NTg4MSwiZXhwIjoxNzQyNDEzODgxfQ.tuMoX7bX0oKQvqJNLuSsxPgv3euIs-EWmFF6hczq_tw";
 
     // Fetch all signs from the API
     async function loadData() {

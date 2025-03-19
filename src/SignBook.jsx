@@ -5,13 +5,12 @@ function SignBook() {
     const [signs, setSigns] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); // Correct initialization
     const [filterLesson, setFilterLesson] = useState(''); // Correct initialization
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhOTE1MDVmN2I5NzgyMjU1MDgwNTQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzNzcyOTYsImV4cCI6MTc0MjM5NTI5Nn0.-EUFTc910M6IuP2Hw2FAV1V38GtN-HaIldVben9shck";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYzMxMDRlZmZkNGQ2MzBmNTI1MjMiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTc0MjM5NTg4MSwiZXhwIjoxNzQyNDEzODgxfQ.tuMoX7bX0oKQvqJNLuSsxPgv3euIs-EWmFF6hczq_tw";
 
     async function loadData(lesson) {
         const url = lesson
             ? `http://145.24.223.113:8000/signs/filtered?lesson=${lesson}`
             : "http://145.24.223.113:8000/signs";
-
 
         try {
             const response = await fetch(url, {
@@ -22,12 +21,19 @@ function SignBook() {
                 },
             });
 
+            if (!response.ok) {
+                // Log the response status for better debugging
+                console.error(`Error: ${response.status} - ${response.statusText}`);
+                return;  // Exit the function if the response is not OK
+            }
+
             const data = await response.json();
-            setSigns(data.items || {});
+            setSigns(data.items || []);
         } catch (error) {
             console.error("Er is een fout opgetreden:", error);
         }
     }
+
 
     useEffect(() => {
         loadData(filterLesson);

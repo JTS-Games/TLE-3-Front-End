@@ -27,16 +27,6 @@ function Layout(){
                             </div>
                         </Link>
                     </div>
-
-                    {/* Account Info */}
-                    <div className="hidden md:flex gap-6 items-center">
-                        <div>
-                            <p>Account</p>
-                        </div>
-                        <div>
-                            <img src="./assets/user-icon.png" alt="User Icon" className="w-10 h-10" />
-                        </div>
-                    </div>
                 </nav>
 
 
@@ -68,21 +58,15 @@ function Layout(){
             <main>
                 <Outlet/>
             </main>
-            <footer className="flex flex-col md:flex-row items-center justify-between px-5 md:px-20 py-5 bg-white drop-shadow-[0_-10px_10px_rgba(0,0,0,0.10)]">
+            <footer className="hidden md:flex flex flex-col md:flex-row items-center justify-between px-5 md:px-20 py-5 bg-white drop-shadow-[0_-10px_10px_rgba(0,0,0,0.10)]">
                 <div className="mb-3 md:mb-0">
                     <p>Handygo ©2025</p>
                 </div>
 
                 <div className="flex flex-col gap-3 text-center md:text-left">
-                    <div>
-                        <p>Gemaakt door:</p>
-                    </div>
-                    <div>
-                        <p>Team 2: Uefa, Yaelen, Maaike, Daan en Joey</p>
-                    </div>
-                    <div>
-                        <p>Team 12: Alex, Abel, David, Sil, Irsan en Jonah</p>
-                    </div>
+                    <p>Gemaakt door:</p>
+                    <p>Team 2: Uefa, Yaelen, Maaike, Daan en Joey</p>
+                    <p>Team 12: Alex, Abel, David, Sil, Irsan en Jonah</p>
                 </div>
             </footer>
         </div>

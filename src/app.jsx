@@ -10,7 +10,6 @@ import Test from "./Test.jsx";
 import SelfLesson from "./SelfLesson.jsx";
 import Login from "./login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
-import SSOCallback from "./SSOCallback.jsx";
 import ErrorPage from "./errorPage.jsx";
 import PlaylistView from "./playlistView.jsx";
 import Playlists from "./playlists.jsx";
@@ -26,7 +25,7 @@ const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                path: '/',
+                path: '/home',
                 element:<ProtectedRoute><Home/></ProtectedRoute>
             },
             {
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
             },
 
             {
-                path: '/signBook',
+                path: "/signBook",
                 element: <SignBook/>,
             },
             {
@@ -78,8 +77,6 @@ const router = createBrowserRouter([
             {
                 path: "/SSOCallbackLogin",
                 element: <SSOCallbackLogin/>
-            }
-                element: <SSOCallback/>
             },
             {
                 path: "/playplaylist/:id",
