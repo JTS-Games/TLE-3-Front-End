@@ -79,7 +79,7 @@ function Leerstof() {
             <h1 className="text-4xl font-kulim font-semibold italic uppercase text-center mt-10 mb-10 text-brown-700">
                 Lessen
             </h1>
-            {/* Left Lesson Section */}
+            {/* Left Lesson1 Section */}
             <div className="h-screen bg-background px-6 md:px-20 py-10 md:pb-20 flex flex-col md:flex-row">
                 <div
                     className={`md:w-1/4 w-full flex flex-col items-center ${

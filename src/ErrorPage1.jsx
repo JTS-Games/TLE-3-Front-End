@@ -1,4 +1,4 @@
-function ErrorPage() {
+function ErrorPage1() {
     return (
         <section>
             <div className="flex align-middle justify-center">
@@ -12,4 +12,4 @@ function ErrorPage() {
     )
 }
 
-export default ErrorPage;
+export default ErrorPage1;

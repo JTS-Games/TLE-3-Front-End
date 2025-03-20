@@ -1,17 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "./Layout.jsx";
-import LayoutNoNav from "./layoutNoNav.jsx";
+import LayoutNoNav1 from "./LayoutNoNav1.jsx";
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
 import Home from "./Home.jsx";
-import Lesson from "./Lesson.jsx";
-import Test from "./Test.jsx";
-import SelfLesson from "./SelfLesson.jsx";
+import Lesson1 from "./Lesson1.jsx";
+import Test1 from "./Test1.jsx";
+import SelfLesson1 from "./SelfLesson1.jsx";
 import Login from "./Login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./component/SSOCallback.jsx";
-import ErrorPage from "./errorPage.jsx";
-import PlaylistView from "./playlistView.jsx";
+import ErrorPage1 from "./ErrorPage1.jsx";
+import PlaylistView from "./PlaylistView.jsx";
 import Playlists from "./Playlist.jsx";
 import PlayPlaylist from "./PlayPlaylist.jsx";
 import TokenProvider from "./component/TokenContext.jsx";
@@ -43,24 +43,24 @@ const router = createBrowserRouter([
             },
             {
                 path: "*",
-                element: <ErrorPage/>,
+                element: <ErrorPage1/>,
             }
         ]
     },
     {
-        element: <LayoutNoNav />,
+        element: <LayoutNoNav1 />,
         children: [
             {
                 path: '/lessons/:id',
-                element: <ProtectedRoute><Lesson /></ProtectedRoute>
+                element: <ProtectedRoute><Lesson1 /></ProtectedRoute>
             },
             {
                 path: '/selflessons/:id',
-                element: <ProtectedRoute><SelfLesson/></ProtectedRoute>,
+                element: <ProtectedRoute><SelfLesson1/></ProtectedRoute>,
             },
             {
                 path: '/test/:id',
-                element: <ProtectedRoute><Test/></ProtectedRoute>,
+                element: <ProtectedRoute><Test1/></ProtectedRoute>,
             },
             {
                 path: "/",

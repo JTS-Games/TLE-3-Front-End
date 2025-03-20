@@ -1,6 +1,6 @@
 import {Link, Outlet} from "react-router";
 
-function LayoutNoNav(){
+function LayoutNoNav1(){
     return(
         <div className="bg-background text-xl flex flex-col h-screen justify-between">
             <main>
@@ -10,4 +10,4 @@ function LayoutNoNav(){
     );
 }
 
-export default LayoutNoNav;
+export default LayoutNoNav1;
