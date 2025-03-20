@@ -130,7 +130,7 @@ function Playlists() {
                                 </svg>
                             </button>
 
-                            {/* Gebruik <Link> om te navigeren naar de PlaylistView */}
+                            {/* Gebruik <Link> om te navigeren naar de PlaylistView1 */}
                             <Link to={`/playlist/${playlist.id}`} className="ml-[2vw] flex justify-center items-center font-bold hover:underline">
                                 {playlist.naam}
                             </Link>

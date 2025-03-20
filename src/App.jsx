@@ -11,7 +11,7 @@ import Login from "./Login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./component/SSOCallback.jsx";
 import ErrorPage1 from "./ErrorPage1.jsx";
-import PlaylistView from "./PlaylistView.jsx";
+import PlaylistView1 from "./PlaylistView1.jsx";
 import Playlists from "./Playlist.jsx";
 import PlayPlaylist from "./PlayPlaylist.jsx";
 import TokenProvider from "./component/TokenContext.jsx";
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/playlist/:id",
-                element: <ProtectedRoute><PlaylistView/></ProtectedRoute>,
+                element: <ProtectedRoute><PlaylistView1/></ProtectedRoute>,
             },
             {
                 path: "/signBook",

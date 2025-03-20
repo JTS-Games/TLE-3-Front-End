@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 
-function PlaylistView() {
+function PlaylistView1() {
     const { id } = useParams();
     const navigate = useNavigate(); // Voeg useNavigate toe
     const [playlist, setPlaylist] = useState(null);
@@ -110,4 +110,4 @@ function PlaylistView() {
     );
 }
 
-export default PlaylistView;
+export default PlaylistView1;
