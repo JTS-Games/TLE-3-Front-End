@@ -80,7 +80,7 @@ function Leerstof() {
                 Lessen
             </h1>
             {/* Left Lesson Section */}
-            <div className="h-screen bg-background px-6 md:px-20 py-10 md:pb-20 flex flex-col md:flex-row">
+            <div className="md:h-full h-screen bg-background px-6 md:px-20 py-10 md:pb-20 flex flex-col md:flex-row">
                 <div
                     className={`md:w-1/4 w-full flex flex-col items-center ${
                         selectedLesson ? "hidden md:flex" : "flex"
@@ -133,6 +133,12 @@ function Leerstof() {
                                     WOORDEN {">"}
                                 </a>
                                 <a
+                                    href={`/selflessons/${selectedLesson}`}
+                                    className="w-full md:w-1/4 text-center bg-[#CCE6FE] text-[#6494ED] px-10 py-6 cursor-pointer rounded-lg font-bold transition-all duration-300"
+                                >
+                                    ZELFTEST {">"}
+                                </a>
+                                <a
                                     href={`/test/${selectedLesson}`}
                                     className="w-full md:w-1/4 text-center bg-[#CCE6FE] text-[#6494ED] px-10 py-6 cursor-pointer rounded-lg font-bold transition-all duration-300"
                                 >
@@ -176,7 +182,7 @@ function Leerstof() {
 
                         </>
                     ) : (
-                        <p className="text-lg text-gray-600">Selecteer een les om te beginnen.</p>
+                        <p className="ml-[13.5vw] text-lg items-center text-gray-600">Selecteer een les om te beginnen.</p>
                     )}
                 </div>
             </div>
