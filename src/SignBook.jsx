@@ -5,7 +5,7 @@ function SignBook() {
     const [signs, setSigns] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); // Correct initialization
     const [filterLesson, setFilterLesson] = useState(''); // Correct initialization
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYzMxMDRlZmZkNGQ2MzBmNTI1MjMiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTc0MjM5NTg4MSwiZXhwIjoxNzQyNDEzODgxfQ.tuMoX7bX0oKQvqJNLuSsxPgv3euIs-EWmFF6hczq_tw";
+    const token = localStorage.getItem("responseToken")
 
     async function loadData(lesson) {
         const url = lesson

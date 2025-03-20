@@ -13,7 +13,7 @@ function Playlists() {
             return;
         }
 
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYjAxNTVmN2I5NzgyMjU1MDg0MTkiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODUxNzMsImV4cCI6MTc0MjQwMzE3M30.xZWGo1-_PRWmbOleHMeWu0trg3V4-6rrFVttSJXrZJY";
+        const token = localStorage.getItem("responseToken")
 
         fetch("http://145.24.223.113:8000/playlist", {
             method: "POST",

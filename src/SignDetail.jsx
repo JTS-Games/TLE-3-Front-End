@@ -1,14 +1,13 @@
 import { useParams, useNavigate, Link } from "react-router";
 import { useEffect, useState } from "react";
 import { useSwipeable } from "react-swipeable";  // Import react-swipeable
-import SwipeComponent from './component/signBookNavigation.jsx';  // Importing SwipeComponent
 
 function SignDetail() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [signs, setSigns] = useState([]);  // Store all signs
     const [currentSignIndex, setCurrentSignIndex] = useState(null);  // Track current sign
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYzMxMDRlZmZkNGQ2MzBmNTI1MjMiLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTc0MjM5NTg4MSwiZXhwIjoxNzQyNDEzODgxfQ.tuMoX7bX0oKQvqJNLuSsxPgv3euIs-EWmFF6hczq_tw";
+    const token = localStorage.getItem("responseToken")
 
     // Fetch all signs from the API
     async function loadData() {
@@ -126,7 +125,7 @@ function SignDetail() {
                             <div className="absolute top-4 right-4 bg-incorrect rounded-full flex justify-center items-center z-10">
                                 <Link to="/signBook">
                                     <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.0502 12.0503L21.9497 21.9497M12.0502 21.9497L21.9497 12.0503" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M12.0502 12.0503L21.9497 21.9497M12.0502 21.9497L21.9497 12.0503" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
                                 </Link>
                             </div>
