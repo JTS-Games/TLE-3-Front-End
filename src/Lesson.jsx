@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import {useNavigate, useParams} from "react-router";
 
 
-function SelfLesson1() {
+function Lesson() {
     const navigate = useNavigate();
     const params = useParams();
     const [signs, setSigns] = useState([]);
     const [sign, setSign] = useState([]);
+    const [isCorrect, setIsCorrect] = useState(false);
+    const [isIncorrect, setIsIncorrect] = useState(false);
     const [isStartPopup, setIsStartPopup] = useState(true);
     const [isEndPopup, setIsEndPopup] = useState(false);
     const [isProgressBar, setIsProgressBar] = useState(false);
-    const [isExtraButton, setIsExtraButton] = useState(false);
+
     const [signNumber, setSignNumber] = useState([]);
     const [originalSignNumber, setOriginalSignNumber] = useState([]);
 
@@ -22,10 +24,21 @@ function SelfLesson1() {
         event.preventDefault();
         setIsHint(!isHint);
         console.log(isHint);
-        setIsExtraButton(true);
     }
 
     const [isHint, setIsHint] = useState(false);
+
+    const [formData, setFormData] = useState({
+        answer: '',
+    });
+
+    const handleInputChange = (event) => {
+        const {name, value} = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
     //loads data
     useEffect(() => {
@@ -37,11 +50,22 @@ function SelfLesson1() {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYTAxZDVmN2I5NzgyMjU1MDgzMTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODEwODUsImV4cCI6MTc0MjM5OTA4NX0._jTa3ykJUnoyxU6R0APqXIkJG3M-q65V2dP5xYG9CZE`},
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYTAxZDVmN2I5NzgyMjU1MDgzMTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODEwODUsImV4cCI6MTc0MjM5OTA4NX0._jTa3ykJUnoyxU6R0APqXIkJG3M-q65V2dP5xYG9CZE`
+            },
         });
         const data = await response.json();
         setSigns(data);
         setOriginalSignNumber(data.items.length);
+    }
+
+    //Handles button
+    async function handleSubmitButton(event) {
+        event.preventDefault();
+        if (formData.answer.toLowerCase() === sign.translation.toLowerCase()) {
+            correctAnswer()
+        } else {
+            incorrectAnswer()
+        }
     }
 
     function questionList() {
@@ -55,10 +79,20 @@ function SelfLesson1() {
         }
     }
 
+    function correctAnswer() {
+        setIsCorrect(true);
+    }
+
+    function incorrectAnswer() {
+        setIsIncorrect(true);
+    }
+
     function handleNextButton() {
+        setIsCorrect(false);
+        setIsIncorrect(false);
         setIsHint(false);
-        setIsExtraButton(false);
-        questionList()
+        formData.answer=""
+            questionList()
     }
 
     function handlePopupButton() {
@@ -72,7 +106,7 @@ function SelfLesson1() {
                 {isStartPopup && (
                     <section className="flex flex-col w-[100%] h-screen bg-background justify-center items-center">
                         <div>
-                            <h1 className="text-4xl pb-40">Doe de gebaren van les {params.id} zelf na.</h1>
+                            <h1 className="text-4xl pb-40">Leer de gebaren van les {params.id}.</h1>
                         </div>
                         <div>
                             <button onClick={handlePopupButton}
@@ -140,59 +174,89 @@ function SelfLesson1() {
             <section>
                 <div className="flex flex-col lg:flex-row justify-center p-10 gap-10">
                     {isHint && (
-                        <div>
-                            <div>
-                                <img alt="gebaar" className="h-[36vh] rounded-[50px]" src={sign.gif}></img>
+                        <div
+                            className="flex max-h-[40vh] py-16 px-16 bg-button rounded-[50px] text-4xl">
+                            <div className="flex flex-col">
+                                <div>
+                                    <p><b>Vertaling:</b></p>
+                                </div>
+                                <div>
+                                    <p>{sign.translation}</p>
+                                </div>
+                                <div>
+                                    <p><b>Omschrijving:</b></p>
+                                </div>
+                                <div>
+                                    <p>{sign.explanation}</p>
+                                </div>
                             </div>
                         </div>
                     )}
-                    <div className="text-6xl">
-                        <p>{sign.translation}</p>
+                    <div>
+                        <img alt="gebaar" className="h-[36vh] rounded-[50px]" src={sign.gif}></img>
                     </div>
                 </div>
             </section>
             {isProgressBar && (
             <section>
                 <form
-                    className="flex items-center justify-center p-10 lg:gap-[5%] gap-10 mt-10 lg:mt-10 sticky flex-col pb-96">
-                    {!isExtraButton && (
-                        <div className="text-3xl pb-10">
-                            <p>Doe dit woord na in gebarentaal</p>
-                        </div>
-                    )}
-                    {isExtraButton &&(
-                        <div className="text-3xl pb-10">
-                            <p>Heb je dit gebaar correct nagedaan?</p>
-                        </div>
-                    )}
-                    {!isHint && (
-                        <div className="flex items-center py-10">
-                            <button onClick={handleHintButton}
-                                    className="drop-shadow-md bg-button  py-8 px-32 rounded-full">Laat video zien
-                            </button>
-                        </div>
-                    )}
-
-
-                    {isExtraButton && (
-                        <div className="flex items-center justify-center px-10 flex-row gap-10">
-                            <div>
-                                <button type="submit" onClick={handleNextButton}
-                                        className="drop-shadow-md bg-incorrect py-8 px-28 rounded-full text-white">Ik doe dit gebaar incorrect
-                                </button>
-                            </div>
-                            <div>
-                                <button type="submit" onClick={handleNextButton}
-                                        className="drop-shadow-md bg-correct py-8 px-28 rounded-full">Ik doe dit gebaar correct
-                                </button>
-                            </div>
-                        </div>
-                    )}
+                    className="flex items-center justify-center p-10 lg:gap-[5%] gap-10 mt-0 lg:mt-10 sticky flex-col lg:flex-row">
+                    <div>
+                        <input
+                            className="drop-shadow-md bg-button py-24 lg:py-8 px-[15vw] rounded-[50px] lg:rounded-full"
+                            value={formData.answer}
+                            type="text" id="answer"
+                            name="answer" required onChange={handleInputChange}
+                            placeholder="voer hier uw antwoord in"></input>
+                    </div>
+                    <div>
+                        <button type="submit" onClick={handleSubmitButton}
+                                className="drop-shadow-md bg-correct py-8 px-28 lg:px-32 rounded-full">Check
+                        </button>
+                    </div>
                 </form>
             </section>
+            )}
+            {isCorrect && (
+                <section className="flex sticky bottom-0 w-[100%] justify-center">
+                    <div className="flex flex-col lg:flex-row w-[100%] justify-between gap-10 py-16 px-32 bg-correct rounded-t-[50px]">
+                        <div className="flex items-center">
+                            <p className="text-4xl lg:text-6xl">Correct!</p>
+                        </div>
+                        <div className="flex items-center w-[50%]">
+                            <p>Dit gebaar betekent inderdaad {sign.translation}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <button onClick={handleNextButton}
+                                className="flex items-center drop-shadow-md bg-button py-8 px-16 lg:px-32 rounded-full">Volgende vraag
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            )}
+            {isIncorrect && (
+                <section className="flex sticky bottom-0 w-[100%] justify-center">
+                    <div className="flex flex-col gap-10 lg:flex-row w-[100%] justify-between py-16 px-32 bg-incorrect rounded-t-[50px]">
+                        <div className="flex items-center text-white">
+                            <p className="text-4xl lg:text-6xl">Incorrect</p>
+                        </div>
+                        <div className="flex flex-col lg:flex-row items-center gap-10">
+                            <div className="flex items-center">
+                                <button onClick={handleHintButton}
+                                        className="drop-shadow-md bg-correct py-8 px-32 rounded-full">Laat antwoord zien
+                                </button>
+                            </div>
+                            <div>
+                                <button onClick={handleNextButton}
+                                    className="drop-shadow-md bg-button py-8 px-32 rounded-full">Volgende vraag
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             )}
         </main>
     );
 }
 
-export default SelfLesson1;
+export default Lesson;

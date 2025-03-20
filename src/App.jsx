@@ -1,17 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "./Layout.jsx";
-import LayoutNoNav1 from "./LayoutNoNav1.jsx";
+import LayoutNoNav from "./LayoutNoNav.jsx";
 import SignBook from "./SignBook.jsx";
 import SignDetail from "./SignDetail.jsx";
 import Home from "./Home.jsx";
-import Lesson1 from "./Lesson1.jsx";
-import Test1 from "./Test1.jsx";
-import SelfLesson1 from "./SelfLesson1.jsx";
+import Lesson from "./Lesson.jsx";
+import Test from "./Test.jsx";
+import SelfLesson from "./SelfLesson.jsx";
 import Login from "./Login.jsx";
 import ProtectedRoute from "./component/PrivateRoute.jsx";
 import SSOCallback from "./component/SSOCallback.jsx";
-import ErrorPage1 from "./ErrorPage1.jsx";
-import PlaylistView1 from "./PlaylistView1.jsx";
+import ErrorPage from "./ErrorPage.jsx";
+import PlaylistView from "./PlaylistView.jsx";
 import Playlists from "./Playlist.jsx";
 import PlayPlaylist from "./PlayPlaylist.jsx";
 import TokenProvider from "./component/TokenContext.jsx";
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/playlist/:id",
-                element: <ProtectedRoute><PlaylistView1/></ProtectedRoute>,
+                element: <ProtectedRoute><PlaylistView/></ProtectedRoute>,
             },
             {
                 path: "/signBook",
@@ -43,24 +43,24 @@ const router = createBrowserRouter([
             },
             {
                 path: "*",
-                element: <ErrorPage1/>,
+                element: <ErrorPage/>,
             }
         ]
     },
     {
-        element: <LayoutNoNav1 />,
+        element: <LayoutNoNav />,
         children: [
             {
                 path: '/lessons/:id',
-                element: <ProtectedRoute><Lesson1 /></ProtectedRoute>
+                element: <ProtectedRoute><Lesson /></ProtectedRoute>
             },
             {
                 path: '/selflessons/:id',
-                element: <ProtectedRoute><SelfLesson1/></ProtectedRoute>,
+                element: <ProtectedRoute><SelfLesson/></ProtectedRoute>,
             },
             {
                 path: '/test/:id',
-                element: <ProtectedRoute><Test1/></ProtectedRoute>,
+                element: <ProtectedRoute><Test/></ProtectedRoute>,
             },
             {
                 path: "/",
