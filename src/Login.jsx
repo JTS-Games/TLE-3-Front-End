@@ -23,12 +23,12 @@ const Login = () => {
     };
 
     const handleRegister = () => {
-        const redirectUrl = encodeURIComponent("http://localhost:5173/SSOCallback");
+        const redirectUrl = encodeURIComponent("Http://145.24.223.147/SSOCallback");
         window.location.href = `https://cmgt.hr.nl/chat-login/handle/tle2-1?redirect=${redirectUrl}`
     };
 
     const handleLogin = () => {
-        const redirectUrl = encodeURIComponent("http://localhost:5173/SSOCallbackLogin")
+        const redirectUrl = encodeURIComponent("Http://145.24.223.147/SSOCallbackLogin")
         window.location.href = `https://cmgt.hr.nl/chat-login/handle/tle2-1?redirect=${redirectUrl}`
     }
 

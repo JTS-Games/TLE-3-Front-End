@@ -15,7 +15,7 @@ export default {
         'offwhite' : '#F8F7F7'
       },
       backgroundImage: {
-        'blue-white-gradient': "url('src/assets/background/mesh-gradient-blue-white.png')"
+        'blue-white-gradient': "url('/mesh-gradient-blue-white.png')"
       },
       fontFamily: {
         kulim: ["Kulim Park", "sans-serif"]
