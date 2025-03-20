@@ -13,6 +13,7 @@ function SelfLesson() {
     const [isExtraButton, setIsExtraButton] = useState(false);
     const [signNumber, setSignNumber] = useState([]);
     const [originalSignNumber, setOriginalSignNumber] = useState([]);
+    const responseToken = localStorage.getItem("responseToken")
 
     function handleBackButton() {
         navigate('/');
@@ -37,7 +38,7 @@ function SelfLesson() {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RhYTAxZDVmN2I5NzgyMjU1MDgzMTEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDIzODEwODUsImV4cCI6MTc0MjM5OTA4NX0._jTa3ykJUnoyxU6R0APqXIkJG3M-q65V2dP5xYG9CZE`},
+                'Authorization': `Bearer ${responseToken}`},
         });
         const data = await response.json();
         setSigns(data);
